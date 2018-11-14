@@ -2,7 +2,7 @@
 
 export ELK_VERSION=6.4.3
 
-mkdir filebeat/data
+mkdir -p filebeat/data
 
 docker-compose up -d elasticsearch
 

@@ -1,7 +1,7 @@
 filebeat.prospectors:
 - type: log
   paths:
-    - /mnt/logs/difi-pt2-oidc-app*
+    - /mnt/logs/*
   fields:
     log_type: 'oidc'
   multiline.pattern: '^[[0-9]{4}-[0-9]{2}-[0-9]{2}'
