@@ -1,10 +1,12 @@
 filebeat.prospectors:
 - type: log
   paths:
-    - /mnt/logs/*
+    - /mnt/logs/difi-pt2-oidc-app*
+  fields:
+    log_type: 'oidc'
   multiline.pattern: '^[[0-9]{4}-[0-9]{2}-[0-9]{2}'
   multiline.negate: true
   multiline.match: after
 
 output.logstash:
-  hosts: ["logstash:5044"]
+  hosts: ['logstash:5044']

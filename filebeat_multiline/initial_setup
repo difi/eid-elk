@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export ELK_VERSION=6.4.3
+
+mkdir filebeat/data
+
+docker-compose up -d elasticsearch
+
+sleep 10
+
+# X-pack
+curl -X POST -u elastic:changeme "localhost:9200/_xpack/license/start_trial?acknowledge=true"
+curl -X PUT -u elastic:changeme "localhost:9200/_xpack/security/user/logstash_system/_password" -H 'Content-Type: application/json' -d'
+{
+  "password": "changeme"
+}
+'
+
+curl -X PUT -u elastic:changeme "localhost:9200/_template/filebeat_template" -H 'Content-Type: application/json' -d @elasticsearch/mapping_template.json
+curl -X DELETE -u elastic:changeme "localhost:9200/filebeat-test"
+
+docker-compose stop elasticsearch
