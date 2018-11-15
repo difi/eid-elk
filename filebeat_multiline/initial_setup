@@ -4,9 +4,9 @@ export ELK_VERSION=6.4.3
 
 mkdir -p filebeat/data
 
-docker-compose up -d elasticsearch
+docker-compose up -d elasticsearch kibana
 
-sleep 10
+sleep 30
 
 # X-pack
 curl -X POST -u elastic:changeme "localhost:9200/_xpack/license/start_trial?acknowledge=true"
@@ -16,7 +16,10 @@ curl -X PUT -u elastic:changeme "localhost:9200/_xpack/security/user/logstash_sy
 }
 '
 
+# Add mapping template
 curl -X PUT -u elastic:changeme "localhost:9200/_template/filebeat_template" -H 'Content-Type: application/json' -d @elasticsearch/mapping_template.json
-curl -X DELETE -u elastic:changeme "localhost:9200/filebeat-test"
 
-docker-compose stop elasticsearch
+# Add Kibana index pattern, dashboard
+curl -X POST -u elastic:changeme "localhost:5601/api/saved_objects/_bulk_create" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d @kibana/saved_objects/export.json > /dev/null
+
+docker-compose stop elasticsearch kibana

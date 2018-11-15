@@ -152,6 +152,31 @@
               "ignore_above": 256
             }
           }
+        },
+        "timestamp": {
+          "properties": {
+            "day_of_month": {
+              "type": "integer"
+            },
+            "day_of_week": {
+              "type": "keyword"
+            },
+            "day_of_year": {
+              "type": "integer"
+            },
+            "hour_of_day": {
+              "type": "integer"
+            },
+            "minute_of_hour": {
+              "type": "integer"
+            },
+            "month_of_year": {
+              "type": "keyword"
+            },
+            "week_number": {
+              "type": "integer"
+            }
+          }
         }
       }
     }

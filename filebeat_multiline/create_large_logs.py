@@ -9,6 +9,9 @@ max_date = datetime.now()
 input_logs_dir = '/Users/dsa/Downloads/logs'
 output_logs = './logs/large_log.log'
 
+# Set random seed to make runs reproducible
+random.seed(42)
+
 # Read log lines
 log_lines = []
 for filename in os.listdir(input_logs_dir):
