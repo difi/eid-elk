@@ -6,7 +6,7 @@ import random
 n_log_lines_to_generate = 1000000
 min_date = datetime(2018, 1, 1)
 max_date = datetime.now()
-input_logs_dir = '/Users/dsa/Downloads/logs'
+input_logs_dir = './data'
 output_logs = './logs/large_log.log'
 
 # Set random seed to make runs reproducible
@@ -16,7 +16,7 @@ random.seed(42)
 log_lines = []
 for filename in os.listdir(input_logs_dir):
     for line in open(os.path.join(input_logs_dir, filename), 'rb'):
-        line_decoded = line.decode('ascii')
+        line_decoded = line.decode('utf8')
         try:
             date = datetime.strptime(line_decoded[:23], "%Y-%m-%d %H:%M:%S,%f")
             log_lines.append(line_decoded)
@@ -38,4 +38,4 @@ with open(output_logs, 'wb') as fid:
         i_line = random.randrange(0, n_log_lines)
         new_log_line = random_date_str + log_lines[i_line][23:]
 
-        fid.write(new_log_line.encode('ascii'))
+        fid.write(new_log_line.encode('utf8'))
