@@ -28,7 +28,7 @@ python create_large_logs.py
 
 Eksempelet kjøres ved å først kjøre (kun første gang)
 ```bash
-$ ELK_VERSION=6.4.3 docker-compose build
+$ ELK_VERSION=6.5.0 docker-compose build
 $ ./initial_setup
 ```
 
@@ -36,12 +36,12 @@ $ ./initial_setup
 
 og deretter
 ```bash
-$ ELK_VERSION=6.4.3 docker-compose up
+$ ELK_VERSION=6.5.0 docker-compose up
 ```
 
 Ved debugging, der det ønskes å lese samme logg flere ganger, kan registry-filen til filebeat slettes først:
 ```bash
-$ rm filebeat/data/registry && ELK_VERSION=6.4.3 docker-compose up
+$ rm filebeat/data/registry && ELK_VERSION=6.5.0 docker-compose up
 ```
 
 For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`.
