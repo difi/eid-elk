@@ -14,10 +14,12 @@ head = {
     'kbn-xsrf': 'true'
 }
 
+types = ['visualization', 'dashboard', 'search', 'index-pattern']
 
 def export_saved_objects():
     full_path = urljoin(kibana_host, 'api/saved_objects/_find')
-    response = requests.get(full_path, auth=(username, password), headers=head)
+    response = requests.get(full_path, auth=(username, password), headers=head,
+                            params={"type": types})
     saved_objects = response.json()['saved_objects']
     if response.status_code != 200:
         print(response.status_code, response.text)

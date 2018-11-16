@@ -6,7 +6,7 @@ import random
 n_log_lines_to_generate = 1000000
 min_date = datetime(2018, 1, 1)
 max_date = datetime.now()
-input_logs_dir = './data'
+input_logs_dir = './logs'
 output_logs = './logs/large_log.log'
 
 # Set random seed to make runs reproducible

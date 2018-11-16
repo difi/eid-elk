@@ -72,6 +72,4 @@ Konfigurasjonen til Kibana ligger i `kibana/config/kibana.yml`. Siden X-Pack er 
 
 Et enkelt logging dashboard (med tilhørende index pattern og visualiseringer) ligger lagret i `kibana/saved_objects/export.json`, og importeres som en del av `initial_setup`-scriptet.
 
-## Nyttige funksjoner
-
-Nyttige funksjoner for å eksportere og importere lagrede objekter i Kibana (som index templates, dashboards etc.), finnes i `kibana_saved_objects.py`.
+Det er verdt å legge merke til at, per versjon 6.5.0, objekter som eksporteres fra GUIet til Kibana ikke kompatible for import via APIet, og vice versa. `export.json` ble exportert med APIet, og kan derfor ikke importeres gjennom GUIet. Nyttige funksjoner for export og import gjennom Saved Objects APIet til Kibana finnes i `kibana_saved_objects.py`.
