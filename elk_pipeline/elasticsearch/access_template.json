@@ -1,0 +1,190 @@
+{
+  "index_patterns": ["logs_access*"],
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings" : {
+    "doc" : {
+      "properties" : {
+        "@timestamp" : {
+          "type" : "date"
+        },
+        "@version" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "beat" : {
+          "properties" : {
+            "hostname" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            },
+            "name" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            },
+            "version" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "correlation_id" : {
+          "type" : "keyword"
+        },
+        "fields" : {
+          "properties" : {
+            "log_type" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "host" : {
+          "properties" : {
+            "name" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "httpversion" : {
+          "type" : "keyword"
+        },
+        "input" : {
+          "properties" : {
+            "type" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "offset" : {
+          "type" : "long"
+        },
+        "prospector" : {
+          "properties" : {
+            "type" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "remote_host" : {
+          "type" : "keyword"
+        },
+        "remote_logical_user" : {
+          "type" : "keyword"
+        },
+        "remote_user" : {
+          "type" : "keyword"
+        },
+        "request" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "responsecode" : {
+          "type" : "integer"
+        },
+        "responsetime_in_ms" : {
+          "type" : "integer"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "source" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "tags" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "timestamp": {
+          "properties": {
+            "day_of_month": {
+              "type": "integer"
+            },
+            "day_of_week": {
+              "type": "keyword"
+            },
+            "day_of_year": {
+              "type": "integer"
+            },
+            "hour_of_day": {
+              "type": "integer"
+            },
+            "minute_of_hour": {
+              "type": "integer"
+            },
+            "month_of_year": {
+              "type": "keyword"
+            },
+            "week_number": {
+              "type": "integer"
+            }
+          }
+        },
+        "verb" : {
+          "type" : "keyword"
+        }
+      }
+    }
+  }
+}

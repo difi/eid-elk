@@ -9,7 +9,6 @@ services:
         ELK_VERSION: $ELK_VERSION
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      - ./elasticsearch/mapping_template.json:/usr/share/elasticsearch/mapping_template.json:ro
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -28,6 +27,7 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ./logstash/dead_letter_queue:/usr/share/logstash/data/dead_letter_queue
     ports:
       - "9600:9600"
     environment:
@@ -51,15 +51,30 @@ services:
     depends_on:
       - elasticsearch
 
-  filebeat:
+  filebeat_application_logs:
     build:
-      context: filebeat/
+      context: filebeat_application_logs/
       args:
         ELK_VERSION: $ELK_VERSION
     volumes:
-      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./filebeat_application_logs/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
       - ./logs/:/mnt/logs:ro
-      - ./filebeat/data/:/usr/share/filebeat/data/
+      - ./filebeat_application_logs/data/:/usr/share/filebeat/data/
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+      - logstash
+
+  filebeat_access_logs:
+    build:
+      context: filebeat_access_logs/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - ./filebeat_access_logs/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./logs/:/mnt/logs:ro
+      - ./filebeat_access_logs/data/:/usr/share/filebeat/data/
     networks:
       - elk
     depends_on:

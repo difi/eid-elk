@@ -1,9 +1,9 @@
-filebeat.prospectors:
+filebeat.inputs:
 - type: log
   paths:
-    - /mnt/logs/*
+    - /mnt/logs/*application*.log
   fields:
-    log_type: 'oidc'
+    log_type: 'application_log'
   multiline.pattern: '^[[0-9]{4}-[0-9]{2}-[0-9]{2}'
   multiline.negate: true
   multiline.match: after

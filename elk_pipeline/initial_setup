@@ -2,7 +2,9 @@
 
 export ELK_VERSION=6.5.0
 
-mkdir -p filebeat/data
+mkdir -p filebeat_application_logs/data
+mkdir -p filebeat_access_logs/data
+mkdir -p logstash/dead_letter_queue
 
 docker-compose up -d elasticsearch kibana
 
@@ -16,8 +18,9 @@ curl -X PUT -u elastic:changeme "localhost:9200/_xpack/security/user/logstash_sy
 }
 '
 
-# Add mapping template
-curl -X PUT -u elastic:changeme "localhost:9200/_template/filebeat_template" -H 'Content-Type: application/json' -d @elasticsearch/mapping_template.json
+# Add mapping templates
+curl -X PUT -u elastic:changeme "localhost:9200/_template/application_template" -H 'Content-Type: application/json' -d @elasticsearch/application_template.json
+curl -X PUT -u elastic:changeme "localhost:9200/_template/access_template" -H 'Content-Type: application/json' -d @elasticsearch/access_template.json
 
 # Add Kibana index pattern, dashboard
 curl -X POST -u elastic:changeme "localhost:5601/api/saved_objects/_bulk_create" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d @kibana/saved_objects/export.json > /dev/null

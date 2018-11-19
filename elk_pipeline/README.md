@@ -19,6 +19,22 @@ difi-pt2-oidc-app02.os.eon.no__var_log_idporten-oidc-provider_idporten-oidc-prov
 difi-pt2-oidc-app02.os.eon.no__var_log_kontaktinfo-oauth2-server_kontaktinfo-oauth2-server-difi.log.20181009
 difi-pt2-oidc-app02.os.eon.no__var_log_kontaktinfo-oauth2-server_kontaktinfo-oauth2-server-nondifi.log.20181009
 ```
+og følgende loggfiler fra `ki-prod-20181009.zip`:
+```
+difi-pt2-ki-web01.os.eon.no__var_log_dpi-registration_access_log.log.20181009
+difi-pt2-ki-web01.os.eon.no__var_log_idporten-authlevel-api_access_log.log.20181009
+difi-pt2-ki-web01.os.eon.no__var_log_minidonthefly-api_access_log.log.20181009
+difi-pt2-ki-web02.os.eon.no__var_log_dpi-registration_access_log.log.20181009
+difi-pt2-ki-web02.os.eon.no__var_log_idporten-authlevel-api_access_log.log.20181009
+difi-pt2-ki-web02.os.eon.no__var_log_minidonthefly-api_access_log.log.20181009
+difi-pt2-ki-web03.os.eon.no__var_log_dpi-registration_access_log.log.20181009
+difi-pt2-ki-web03.os.eon.no__var_log_idporten-authlevel-api_access_log.log.20181009
+difi-pt2-ki-web03.os.eon.no__var_log_minidonthefly-api_access_log.log.20181009
+difi-pt2-ki-web04.os.eon.no__var_log_dpi-registration_access_log.log.20181009
+difi-pt2-ki-web04.os.eon.no__var_log_idporten-authlevel-api_access_log.log.20181009
+difi-pt2-ki-web04.os.eon.no__var_log_minidonthefly-api_access_log.log.20181009
+```
+
 Etter å ha endret variablene i første kodeblokk etter ønske kjøres scriptet for å generere loggfilen:
 ```bash
 python create_large_logs.py
@@ -39,12 +55,12 @@ og deretter
 $ ELK_VERSION=6.5.0 docker-compose up
 ```
 
-Ved debugging, der det ønskes å lese samme logg flere ganger, kan registry-filen til filebeat slettes først:
+Ved debugging, der det ønskes å lese samme logg flere ganger, kan registry-filene til filebeat slettes først:
 ```bash
-$ rm filebeat/data/registry && ELK_VERSION=6.5.0 docker-compose up
+$ rm filebeat_application_logs/data/registry filebeat_access_logs/data/registry && ELK_VERSION=6.5.0 docker-compose up
 ```
 
-For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`.
+For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`. Etter å ha åpnet Kibana, gå til "Management", "Index Patterns" og velg en av index-patternene (`logs_access*` eller `logs_application*`) som favoritt.
 
 ## Konfigurasjon
 
@@ -52,13 +68,15 @@ For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`.
 
 Filebeat er konfigurert til å lese loggfiler fra mappen `logs` og sende dem til Logstash. Configurasjonen av filebeat litter i `filebeat/filebeat.yml`, les mer om multiline i Filebeat [her](https://www.elastic.co/guide/en/beats/filebeat/current/multiline-examples.html).
 
-### Logstash med pipelines, dissect og feltaugmentering
+### Logstash med to pipelines, dissect og feltaugmentering
 
-Logstash tar imot logghendelsene fra Filebeat og prosesserer dem i dette eksempelet én pipeline. Konfigurasjonen til Logstash ligger i `logstash/config/logstash.yml`, mens pipelinekonfigurasjonen ligger i `logstash/config/pipelines.yml`. I konfigurasjonen av pipelinen er persistent queue aktivert, som betyr at Logstash kan håndtere flom av hendelser og garanterer minst en levering av hver hendelse. Les mer om logstash pipelines [her](https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html) og persistent queues [her](https://www.elastic.co/guide/en/logstash/current/persistent-queues.html).
+Logstash tar imot logghendelsene fra Filebeat og prosesserer dem i dette eksempelet i to pipeliner, en for tilgang- og en for applikasjonslogger. Konfigurasjonen til Logstash ligger i `logstash/config/logstash.yml`, mens pipelinekonfigurasjonene ligger i `logstash/config/access_logs.conf` og `logstash/config/application_logs.conf`. I konfigurasjonen av pipelinene er persistent queue aktivert, som betyr at Logstash kan håndtere flom av hendelser og garanterer minst en levering av hver hendelse. Les mer om logstash pipelines [her](https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html) og persistent queues [her](https://www.elastic.co/guide/en/logstash/current/persistent-queues.html).
 
-Logstash-pipelinen er definert i `logstash/pipeline/logstash.conf`, hvor et dissect-filter blir brukt til å parse loggen. Når det er mulig å bruke dissect istedenfor grok kan det lønne seg siden dissect er raskere, se flere detaljer [her](https://www.elastic.co/guide/en/logstash/current/plugins-filters-dissect.html).
+I Logstash-pipelinene blir dissect-filter brukt til å parse loggene. Når det er mulig å bruke dissect istedenfor grok kan det lønne seg siden dissect er raskere, se flere detaljer [her](https://www.elastic.co/guide/en/logstash/current/plugins-filters-dissect.html).
 
 Felt som ukedag og måned blir lagt til med Ruby-kode i `logstash/pipeline/logstash.conf`.
+
+[Dead Letter Queues](https://www.elastic.co/guide/en/logstash/current/dead-letter-queues.html) er også aktivert. Denne holder styr på dokumenter som ikke kan bli prosessert av pipelinen i Logstash, og skrives i gjeldende konfigurasjon til mappen `logstash/dead_letter_queue`.
 
 ### Elasticsearch med index template
 

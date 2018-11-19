@@ -10,3 +10,6 @@ xpack.monitoring.elasticsearch.url: http://elasticsearch:9200
 xpack.monitoring.elasticsearch.username: logstash_system
 xpack.monitoring.elasticsearch.password: changeme  # unset by default. see:
                                                    # https://www.elastic.co/guide/en/logstash/current/ls-security.html#ls-monitoring-user
+
+# Turn on dead letter queue (https://www.elastic.co/guide/en/logstash/current/dead-letter-queues.html)
+dead_letter_queue.enable: true

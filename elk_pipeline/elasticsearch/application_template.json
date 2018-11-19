@@ -1,10 +1,10 @@
 {
- "index_patterns": ["filebeat*"],
- "settings": {
-   "number_of_shards": 1,
-   "number_of_replicas": 0
- },
- "mappings": {
+  "index_patterns": ["logs_application*"],
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
     "doc": {
       "properties": {
         "@timestamp": {

@@ -1,0 +1,9 @@
+filebeat.inputs:
+- type: log
+  paths:
+    - /mnt/logs/*access*.log
+  fields:
+    log_type: 'access_log'
+
+output.logstash:
+  hosts: ['logstash:5045']
