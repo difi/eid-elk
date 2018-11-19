@@ -1,12 +1,14 @@
+# Contains two useful functions to export and import saved objects in Kibana.
+
 import requests
 from urllib.parse import urljoin
 import json
 
 # User configurable options
-kibana_host = 'http://localhost:5601'
-saved_objects_path = './kibana/saved_objects/export.json'
-username = 'elastic'
-password = 'changeme'
+kibana_host_default = 'http://localhost:5601'
+saved_objects_path_default = './kibana/saved_objects/export.json'
+username_default = 'elastic'
+password_default = 'changeme'
 
 
 head = {
@@ -14,9 +16,23 @@ head = {
     'kbn-xsrf': 'true'
 }
 
-types = ['visualization', 'dashboard', 'search', 'index-pattern']
+types_default = ['visualization', 'dashboard', 'search', 'index-pattern']
 
-def export_saved_objects():
+def export_saved_objects(
+        kibana_host=kibana_host_default,
+        saved_objects_path=saved_objects_path_default,
+        username=username_default,
+        password=password_default,
+        types=types_default
+):
+    """
+
+    :param kibana_host: Address to Kibana
+    :param saved_objects_path: Full address of json file to save objects to
+    :param username: Kibana username
+    :param password: Kibana password
+    :return:
+    """
     full_path = urljoin(kibana_host, 'api/saved_objects/_find')
     response = requests.get(full_path, auth=(username, password), headers=head,
                             params={"type": types})
@@ -35,7 +51,12 @@ def export_saved_objects():
     return 0
 
 
-def import_saved_objects():
+def import_saved_objects(
+        kibana_host=kibana_host_default,
+        saved_objects_path=saved_objects_path_default,
+        username=username_default,
+        password=password_default
+):
     with open(saved_objects_path, 'r') as fid:
         saved_objects = fid.read()
 

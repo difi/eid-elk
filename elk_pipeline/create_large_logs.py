@@ -1,9 +1,15 @@
+# Code to generate a large log file based on one or more small log files. A random line
+# in the original logfiles are picked and combined with a random date. Make sure all lines
+# are unique to avoid problems with the fingerprint in the logstash pipeline. This can be
+# done with e.g.
+# $ grep -nFx "$(sort large_access_log.log | uniq -d)" large_access_log.log
+
 import os
 from datetime import datetime
 import random
 
 # User configurable options
-n_log_lines_to_generate = 100000
+n_log_lines_to_generate = 10000
 min_date = datetime(2018, 1, 1)
 max_date = datetime.now()
 input_logs_dir = [
@@ -24,6 +30,13 @@ random.seed(42)
 
 
 def create_random_logs(input_logs_dir, log_type, output_log):
+    """
+    Creates and writes a randomised log of any size based on input sample logs.
+    :param input_logs_dir: Directory with original log files.
+    :param log_type: Type of log, can be 'access' or 'application'
+    :param output_log: Filename of log file to write
+    :return: N/A
+    """
 
     if log_type not in ['application', 'access']:
         print('Invalid log format.')

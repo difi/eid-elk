@@ -45,7 +45,7 @@ python create_large_logs.py
 Eksempelet kjøres ved å først kjøre (kun første gang)
 ```bash
 $ ELK_VERSION=6.5.0 docker-compose build
-$ ./initial_setup
+$ ELK_VERSION=6.5.0 ./initial_setup
 ```
 
 ### Kjøre eksempelet

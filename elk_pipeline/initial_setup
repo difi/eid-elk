@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export ELK_VERSION=6.5.0
-
 mkdir -p filebeat_application_logs/data
 mkdir -p filebeat_access_logs/data
 mkdir -p logstash/dead_letter_queue
