@@ -1,8 +1,26 @@
 {
-  "index_patterns": ["logs_application*"],
+  "index_patterns": [
+    "logs_application*"
+  ],
   "settings": {
-    "number_of_shards": 1,
-    "number_of_replicas": 0
+    "index": {
+      "number_of_shards": "1",
+      "number_of_replicas": "0",
+      "analysis": {
+        "analyzer": {
+          "dot_path_analyzer": {
+            "tokenizer": "dot_path_tokenizer"
+          }
+        },
+        "tokenizer": {
+          "dot_path_tokenizer": {
+            "type": "path_hierarchy",
+            "delimiter": ".",
+            "reverse": true
+          }
+        }
+      }
+    }
   },
   "mappings": {
     "doc": {
@@ -22,33 +40,18 @@
         "beat": {
           "properties": {
             "hostname": {
-              "type": "text",
-              "fields": {
-                "keyword": {
-                  "type": "keyword",
-                  "ignore_above": 256
-                }
-              }
+              "type": "keyword"
             },
             "name": {
-              "type": "text",
-              "fields": {
-                "keyword": {
-                  "type": "keyword",
-                  "ignore_above": 256
-                }
-              }
+              "type": "keyword"
             },
             "version": {
-              "type": "text",
-              "fields": {
-                "keyword": {
-                  "type": "keyword",
-                  "ignore_above": 256
-                }
-              }
+              "type": "keyword"
             }
           }
+        },
+        "correlation_id": {
+          "type": "keyword"
         },
         "description": {
           "type": "text",
@@ -75,13 +78,7 @@
         "host": {
           "properties": {
             "name": {
-              "type": "text",
-              "fields": {
-                "keyword": {
-                  "type": "keyword",
-                  "ignore_above": 256
-                }
-              }
+              "type": "keyword"
             }
           }
         },
@@ -112,12 +109,16 @@
         },
         "method": {
           "type": "text",
+          "analyzer": "dot_path_analyzer",          
           "fields": {
             "keyword": {
               "type": "keyword",
               "ignore_above": 256
             }
           }
+        },
+        "move_ip": {
+          "type": "keyword"
         },
         "offset": {
           "type": "long"
@@ -180,5 +181,7 @@
         }
       }
     }
-  }
+  },
+  "aliases": {}
 }
+

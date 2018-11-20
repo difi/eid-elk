@@ -8,7 +8,9 @@ Docker-bildene som brukes har X-Pack aktivert for monitorering av både Elastics
 
 ### Generere eller klargjøre loggfiler
 
-Loggen det ønskes å indeksere må legges i mappen `logs`. Scriptet `generate_large_log.py` kan brukes til å generere en stor loggfil med datoer i ønsket område. Scriptet tar utgangspunkt i et sett med loggfiler som ligger i en mappe, plasseringen av denne mappen angis med variabelen `input_logs_dir`. Scriptet har blitt tested med følgende loggfiler fra `oidc-prod-20181009.zip`:
+Scriptet `generate_large_log.py` kan brukes til å generere en stor loggfil med datoer i ønsket område. Scriptet tar utgangspunkt i et sett med loggfiler som ligger i to mapper. Gjør som følge:
+
+Applikasjonslogger fra `oidc-prod-20181009.zip` plasseres i mappen `./application_logs`. Vi har brukt følgende filer:
 ```
 difi-pt2-oidc-app01.os.eon.no__var_log_idporten-oidc-provider_idporten-oidc-provider-difi.log.20181009
 difi-pt2-oidc-app01.os.eon.no__var_log_idporten-oidc-provider_idporten-oidc-provider-nondifi.log.20181009
@@ -19,7 +21,7 @@ difi-pt2-oidc-app02.os.eon.no__var_log_idporten-oidc-provider_idporten-oidc-prov
 difi-pt2-oidc-app02.os.eon.no__var_log_kontaktinfo-oauth2-server_kontaktinfo-oauth2-server-difi.log.20181009
 difi-pt2-oidc-app02.os.eon.no__var_log_kontaktinfo-oauth2-server_kontaktinfo-oauth2-server-nondifi.log.20181009
 ```
-og følgende loggfiler fra `ki-prod-20181009.zip`:
+Access-logger fra `ki-prod-20181009.zip` dekomprimeres i `./access_logs`. Vi har brukt følgende filer:
 ```
 difi-pt2-ki-web01.os.eon.no__var_log_dpi-registration_access_log.log.20181009
 difi-pt2-ki-web01.os.eon.no__var_log_idporten-authlevel-api_access_log.log.20181009
@@ -35,7 +37,7 @@ difi-pt2-ki-web04.os.eon.no__var_log_idporten-authlevel-api_access_log.log.20181
 difi-pt2-ki-web04.os.eon.no__var_log_minidonthefly-api_access_log.log.20181009
 ```
 
-Etter å ha endret variablene i første kodeblokk etter ønske kjøres scriptet for å generere loggfilen:
+Kjør scriptet for å generere de store loggfilene:
 ```bash
 python create_large_logs.py
 ```

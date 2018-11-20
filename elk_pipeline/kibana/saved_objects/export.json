@@ -38,85 +38,6 @@
   },
   {
     "type": "visualization",
-    "id": "3b88b6b0-e924-11e8-b298-098d80174e8a",
-    "attributes": {
-      "title": "timeseries_per_event",
-      "visState": "{\"title\":\"timeseries_per_event\",\"type\":\"metrics\",\"params\":{\"id\":\"61ca57f0-469d-11e7-af02-69e470af7417\",\"type\":\"timeseries\",\"series\":[{\"id\":\"61ca57f1-469d-11e7-af02-69e470af7417\",\"color\":\"#68BC00\",\"split_mode\":\"terms\",\"metrics\":[{\"id\":\"61ca57f2-469d-11e7-af02-69e470af7417\",\"type\":\"count\"}],\"separate_axis\":0,\"axis_position\":\"right\",\"formatter\":\"number\",\"chart_type\":\"line\",\"line_width\":1,\"point_size\":1,\"fill\":0.5,\"stacked\":\"none\",\"terms_field\":\"level\",\"terms_size\":\"5\"}],\"time_field\":\"@timestamp\",\"index_pattern\":\"filebeat*\",\"interval\":\"auto\",\"axis_position\":\"left\",\"axis_formatter\":\"number\",\"axis_scale\":\"log\",\"show_legend\":1,\"show_grid\":1,\"background_color_rules\":[{\"id\":\"fab42fc0-e923-11e8-988e-53b92958bd34\"}]},\"aggs\":[]}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
-      }
-    },
-    "version": 1
-  },
-  {
-    "type": "visualization",
-    "id": "74985020-e8af-11e8-9769-a72a949e385b",
-    "attributes": {
-      "title": "number_of_errors",
-      "visState": "{\"title\":\"number_of_errors\",\"type\":\"metric\",\"params\":{\"addTooltip\":true,\"addLegend\":false,\"type\":\"metric\",\"metric\":{\"percentageMode\":false,\"useRanges\":false,\"colorSchema\":\"Green to Red\",\"metricColorMode\":\"None\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"labels\":{\"show\":true},\"invertColors\":false,\"style\":{\"bgFill\":\"#000\",\"bgColor\":false,\"labelColor\":false,\"subText\":\"\",\"fontSize\":60}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}]}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
-      }
-    },
-    "version": 1
-  },
-  {
-    "type": "dashboard",
-    "id": "f24e39c0-e8ce-11e8-b3eb-5d7ee301d1d3",
-    "attributes": {
-      "title": "logging_dashboard",
-      "hits": 0,
-      "description": "",
-      "panelsJSON": "[{\"gridData\":{\"x\":0,\"y\":0,\"w\":48,\"h\":13,\"i\":\"1\"},\"version\":\"6.4.3\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"id\":\"cb2632d0-e8ab-11e8-9769-a72a949e385b\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":0,\"y\":13,\"w\":24,\"h\":22,\"i\":\"2\"},\"version\":\"6.4.3\",\"panelIndex\":\"2\",\"type\":\"search\",\"id\":\"24f7c010-e8ae-11e8-9769-a72a949e385b\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":24,\"y\":13,\"w\":11,\"h\":7,\"i\":\"3\"},\"version\":\"6.4.3\",\"panelIndex\":\"3\",\"type\":\"visualization\",\"id\":\"74985020-e8af-11e8-9769-a72a949e385b\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":35,\"y\":13,\"w\":13,\"h\":7,\"i\":\"4\"},\"version\":\"6.4.3\",\"panelIndex\":\"4\",\"type\":\"visualization\",\"id\":\"8aa1cae0-e8af-11e8-9769-a72a949e385b\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":24,\"y\":20,\"w\":24,\"h\":15,\"i\":\"5\"},\"version\":\"6.4.3\",\"panelIndex\":\"5\",\"type\":\"visualization\",\"id\":\"08fc7380-e820-11e8-ba5b-f1985fc8f898\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":0,\"y\":35,\"w\":24,\"h\":15,\"i\":\"6\"},\"version\":\"6.4.3\",\"panelIndex\":\"6\",\"type\":\"visualization\",\"id\":\"a938d690-e8b1-11e8-9769-a72a949e385b\",\"embeddableConfig\":{}},{\"gridData\":{\"w\":24,\"h\":15,\"x\":24,\"y\":35,\"i\":\"7\"},\"version\":\"6.4.3\",\"panelIndex\":\"7\",\"type\":\"visualization\",\"id\":\"2c779840-e8b5-11e8-9769-a72a949e385b\",\"embeddableConfig\":{}}]",
-      "optionsJSON": "{\"darkTheme\":false,\"useMargins\":true,\"hidePanelTitles\":false}",
-      "version": 1,
-      "timeRestore": false,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
-      }
-    },
-    "version": 1
-  },
-  {
-    "type": "visualization",
-    "id": "8aa1cae0-e8af-11e8-9769-a72a949e385b",
-    "attributes": {
-      "title": "number_of_warnings",
-      "visState": "{\"title\":\"number_of_warnings\",\"type\":\"metric\",\"params\":{\"addTooltip\":true,\"addLegend\":false,\"type\":\"metric\",\"metric\":{\"percentageMode\":false,\"useRanges\":false,\"colorSchema\":\"Green to Red\",\"metricColorMode\":\"None\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"labels\":{\"show\":true},\"invertColors\":false,\"style\":{\"bgFill\":\"#000\",\"bgColor\":false,\"labelColor\":false,\"subText\":\"\",\"fontSize\":60}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}]}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"WARN\",\"params\":{\"query\":\"WARN\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"WARN\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
-      }
-    },
-    "version": 1
-  },
-  {
-    "type": "dashboard",
-    "id": "ed92ace0-e923-11e8-b298-098d80174e8a",
-    "attributes": {
-      "title": "logging_dashboard2",
-      "hits": 0,
-      "description": "",
-      "panelsJSON": "[{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":12,\"w\":24,\"h\":15,\"i\":\"1\"},\"id\":\"9679c510-e923-11e8-b298-098d80174e8a\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"version\":\"6.5.0\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":24,\"y\":12,\"w\":24,\"h\":15,\"i\":\"2\"},\"id\":\"e1b0f270-e922-11e8-b298-098d80174e8a\",\"panelIndex\":\"2\",\"type\":\"visualization\",\"version\":\"6.5.0\"},{\"gridData\":{\"x\":0,\"y\":0,\"w\":48,\"h\":12,\"i\":\"3\"},\"version\":\"6.5.0\",\"panelIndex\":\"3\",\"type\":\"visualization\",\"id\":\"3b88b6b0-e924-11e8-b298-098d80174e8a\",\"embeddableConfig\":{}}]",
-      "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-      "version": 1,
-      "timeRestore": false,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-      }
-    },
-    "version": 1
-  },
-  {
-    "type": "visualization",
     "id": "a938d690-e8b1-11e8-9769-a72a949e385b",
     "attributes": {
       "title": "error_day_of_week_histogram",
@@ -162,21 +83,6 @@
   },
   {
     "type": "visualization",
-    "id": "e1b0f270-e922-11e8-b298-098d80174e8a",
-    "attributes": {
-      "title": "Histogram_week_day_vs_hour_day",
-      "visState": "{\"title\":\"Histogram_week_day_vs_hour_day\",\"type\":\"heatmap\",\"params\":{\"type\":\"heatmap\",\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":4,\"colorSchema\":\"Greens\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"overwriteColor\":false,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"segment\",\"params\":{\"filters\":[{\"input\":{\"query\":\"timestamp.day_of_week: Monday\"},\"label\":\"Mandag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Tuesday\"},\"label\":\"Tirsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Wednesday\"},\"label\":\"Onsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Thursday\"},\"label\":\"Torsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Friday\"},\"label\":\"Fredag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Saturday\"},\"label\":\"L\u00f8rdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Sunday\"},\"label\":\"S\u00f8ndag\"}]}},{\"id\":\"3\",\"enabled\":true,\"type\":\"range\",\"schema\":\"group\",\"params\":{\"field\":\"timestamp.hour_of_day\",\"ranges\":[{\"from\":0,\"to\":7},{\"from\":8,\"to\":15},{\"from\":16,\"to\":23}]}}]}",
-      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 225\":\"rgb(247,252,245)\",\"225 - 450\":\"rgb(199,233,192)\",\"450 - 675\":\"rgb(116,196,118)\",\"675 - 900\":\"rgb(35,139,69)\"}}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
-      }
-    },
-    "version": 1
-  },
-  {
-    "type": "visualization",
     "id": "9679c510-e923-11e8-b298-098d80174e8a",
     "attributes": {
       "title": "gauge_no_events",
@@ -205,15 +111,105 @@
   },
   {
     "type": "index-pattern",
-    "id": "e21ad600-ebce-11e8-abb1-9327e73c38bf",
+    "id": "3f003310-ecba-11e8-b569-f1edcbeb32e0",
     "attributes": {
-      "title": "logs_application*",
+      "title": "logs*",
       "timeFieldName": "@timestamp",
-      "fields": "[{\"name\":\"@timestamp\",\"type\":\"date\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"@version\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"@version.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"type\":\"_source\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"beat.hostname\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.hostname.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"beat.name\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"beat.version\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.version.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"description\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"description.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"fields.log_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"fields.log_type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"host.name\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"host.name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"input.type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"input.type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"level\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"message\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"message.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"method\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"method.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"offset\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"prospector.type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"prospector.type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"source\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"source.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"tags\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"tags.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_month\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_week\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_year\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.hour_of_day\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.minute_of_hour\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.month_of_year\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.week_number\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]"
+      "fields": "[{\"name\":\"@timestamp\",\"type\":\"date\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"@version\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"@version.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"type\":\"_source\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"beat.hostname\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.hostname.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"beat.name\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"beat.version\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.version.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"correlation_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"description\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"description.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"fields.log_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"fields.log_type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"host.name\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"host.name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"httpversion\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"input.type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"input.type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"level\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"log.flags\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"log.flags.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"message\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"message.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"method\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"method.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"offset\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"prospector.type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"prospector.type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"remote_host\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"remote_logical_user\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"remote_user\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"request\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"request.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"responsecode\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"responsetime_in_ms\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"size\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"source\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"source.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"tags\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"tags.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_month\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_week\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_year\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.hour_of_day\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.minute_of_hour\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.month_of_year\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.week_number\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"verb\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]"
     },
     "migrationVersion": {
       "index-pattern": "6.5.0"
     },
+    "version": 2
+  },
+  {
+    "type": "index-pattern",
+    "id": "e21ad600-ebce-11e8-abb1-9327e73c38bf",
+    "attributes": {
+      "title": "logs_application*",
+      "timeFieldName": "@timestamp",
+      "fields": "[{\"name\":\"@timestamp\",\"type\":\"date\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"@version\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"@version.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"type\":\"_source\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"beat.hostname\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.hostname.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"beat.name\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"beat.version\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"beat.version.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"correlation_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"correlation_id.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"description\",\"type\":\"string\",\"count\":1,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"description.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"fields.log_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"fields.log_type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"host.name\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"host.name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"input.type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"input.type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"level\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"log.flags\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"log.flags.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"message\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"message.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"method\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"method.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"move_ip\",\"type\":\"string\",\"count\":2,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"move_ip.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"offset\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"prospector.type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"prospector.type.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"source\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"source.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"tags\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"tags.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_month\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_week\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.day_of_year\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.hour_of_day\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.minute_of_hour\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.month_of_year\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp.week_number\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]"
+    },
+    "migrationVersion": {
+      "index-pattern": "6.5.0"
+    },
+    "version": 5
+  },
+  {
+    "type": "visualization",
+    "id": "e1b0f270-e922-11e8-b298-098d80174e8a",
+    "attributes": {
+      "title": "Histogram_week_day_vs_hour_day",
+      "visState": "{\"title\":\"Histogram_week_day_vs_hour_day\",\"type\":\"heatmap\",\"params\":{\"type\":\"heatmap\",\"addTooltip\":true,\"addLegend\":true,\"enableHover\":true,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":4,\"colorSchema\":\"Yellow to Red\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"log\",\"defaultYExtents\":true},\"labels\":{\"show\":true,\"rotate\":0,\"overwriteColor\":false,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"segment\",\"params\":{\"filters\":[{\"input\":{\"query\":\"timestamp.day_of_week: Monday\"},\"label\":\"Mandag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Tuesday\"},\"label\":\"Tirsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Wednesday\"},\"label\":\"Onsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Thursday\"},\"label\":\"Torsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Friday\"},\"label\":\"Fredag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Saturday\"},\"label\":\"L\u00f8rdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Sunday\"},\"label\":\"S\u00f8ndag\"}]}},{\"id\":\"3\",\"enabled\":true,\"type\":\"range\",\"schema\":\"group\",\"params\":{\"field\":\"timestamp.hour_of_day\",\"ranges\":[{\"from\":0,\"to\":7},{\"from\":8,\"to\":15},{\"from\":16,\"to\":23}]}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"split\",\"params\":{\"field\":\"level\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"\",\"row\":false}}]}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"1 - 15\":\"rgb(255,255,204)\",\"15 - 28\":\"rgb(254,217,118)\",\"28 - 41\":\"rgb(253,141,60)\",\"41 - 54\":\"rgb(227,27,28)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 4
+  },
+  {
+    "type": "visualization",
+    "id": "dd1c1f00-ecba-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "timeseries_application_by_level",
+      "visState": "{\"title\":\"timeseries_application_by_level\",\"type\":\"metrics\",\"params\":{\"id\":\"61ca57f0-469d-11e7-af02-69e470af7417\",\"type\":\"timeseries\",\"series\":[{\"id\":\"61ca57f1-469d-11e7-af02-69e470af7417\",\"color\":\"#68BC00\",\"split_mode\":\"terms\",\"metrics\":[{\"id\":\"61ca57f2-469d-11e7-af02-69e470af7417\",\"type\":\"count\"}],\"separate_axis\":0,\"axis_position\":\"right\",\"formatter\":\"number\",\"chart_type\":\"line\",\"line_width\":1,\"point_size\":1,\"fill\":0.5,\"stacked\":\"none\",\"terms_field\":\"level\",\"terms_size\":\"5\"}],\"time_field\":\"@timestamp\",\"index_pattern\":\"logs*\",\"interval\":\"auto\",\"axis_position\":\"left\",\"axis_formatter\":\"number\",\"axis_scale\":\"normal\",\"show_legend\":1,\"show_grid\":1},\"aggs\":[]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
     "version": 1
+  },
+  {
+    "type": "visualization",
+    "id": "14e23950-ecc6-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "timelion_oulier_analysis_application_log",
+      "visState": "{\"type\":\"timelion\",\"title\":\"timelion_oulier_analysis_application_log\",\"params\":{\"expression\":\"$fit=\\\"none\\\", \\n$window=7,   \\n$sigma=2, \\n .es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).sum(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)).lines(fill=2).color(#eee).label('OK values'),\\n \\n.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).subtract(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)).lines(fill=2).color(#eee).label('OK values'),\\n  \\n.es(index=\\\"logs_application\\\").fit($fit).color(#1E90FF),\\n\\n.es(index=\\\"logs_application\\\").condition(gt,.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).sum(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)),.es(index=\\\"logs_application\\\"),null).color(#c66).label(outliers).points(),\\n\\n.es(index=\\\"logs_application\\\").condition(lt,.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).subtract(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)),.es(index=\\\"logs_application\\\"),null).color(#c66).label(outliers).points()\",\"interval\":\"1d\"}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{}"
+      }
+    },
+    "version": 1
+  },
+  {
+    "type": "dashboard",
+    "id": "f24e39c0-e8ce-11e8-b3eb-5d7ee301d1d3",
+    "attributes": {
+      "title": "applikasjonslogg_dashboard",
+      "hits": 0,
+      "description": "Eksempeldashboard for applikasjonslogging",
+      "panelsJSON": "[{\"embeddableConfig\":{},\"gridData\":{\"x\":14,\"y\":41,\"w\":34,\"h\":15,\"i\":\"1\"},\"id\":\"cb2632d0-e8ab-11e8-9769-a72a949e385b\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"version\":\"6.4.3\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":82,\"w\":48,\"h\":19,\"i\":\"2\"},\"id\":\"24f7c010-e8ae-11e8-9769-a72a949e385b\",\"panelIndex\":\"2\",\"type\":\"search\",\"version\":\"6.4.3\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":28,\"w\":14,\"h\":13,\"i\":\"5\"},\"id\":\"08fc7380-e820-11e8-ba5b-f1985fc8f898\",\"panelIndex\":\"5\",\"type\":\"visualization\",\"version\":\"6.4.3\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":69,\"w\":24,\"h\":13,\"i\":\"6\"},\"id\":\"a938d690-e8b1-11e8-9769-a72a949e385b\",\"panelIndex\":\"6\",\"type\":\"visualization\",\"version\":\"6.4.3\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":24,\"y\":69,\"w\":24,\"h\":13,\"i\":\"7\"},\"id\":\"2c779840-e8b5-11e8-9769-a72a949e385b\",\"panelIndex\":\"7\",\"type\":\"visualization\",\"version\":\"6.4.3\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":14,\"y\":28,\"w\":34,\"h\":13,\"i\":\"8\"},\"id\":\"dd1c1f00-ecba-11e8-b569-f1edcbeb32e0\",\"panelIndex\":\"8\",\"type\":\"visualization\",\"version\":\"6.5.0\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":56,\"w\":48,\"h\":13,\"i\":\"9\"},\"id\":\"e1b0f270-e922-11e8-b298-098d80174e8a\",\"panelIndex\":\"9\",\"type\":\"visualization\",\"version\":\"6.5.0\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":14,\"y\":0,\"w\":34,\"h\":13,\"i\":\"10\"},\"id\":\"9679c510-e923-11e8-b298-098d80174e8a\",\"panelIndex\":\"10\",\"type\":\"visualization\",\"version\":\"6.5.0\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":0,\"w\":14,\"h\":28,\"i\":\"11\"},\"id\":\"97f258a0-ecc3-11e8-b569-f1edcbeb32e0\",\"panelIndex\":\"11\",\"type\":\"visualization\",\"version\":\"6.5.0\"},{\"gridData\":{\"x\":14,\"y\":13,\"w\":34,\"h\":15,\"i\":\"12\"},\"version\":\"6.5.0\",\"panelIndex\":\"12\",\"type\":\"visualization\",\"id\":\"14e23950-ecc6-11e8-b569-f1edcbeb32e0\",\"embeddableConfig\":{}}]",
+      "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+      }
+    },
+    "version": 5
+  },
+  {
+    "type": "visualization",
+    "id": "97f258a0-ecc3-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "application_wiki",
+      "visState": "{\"title\":\"application_wiki\",\"type\":\"markdown\",\"params\":{\"fontSize\":12,\"openLinksInNewTab\":false,\"markdown\":\"# Eksempel Dashboard Applikasjonslogg\\n\\nF\u00f8lgende dashboard illustrerer bruk av Pie charts, timeseries, heatmaps, table og bar chart.\\n\\n## Forklaring til brukeren\\n\\nHer kan man beskrive hvordan \u00e5 bruke og tolke dataene, hvor dataene kommer fra, osv.\\n- Dataen er generert via script, s\u00e5 mye av dette er ikke relevant\\n- Her er det mye man kan beskrive\\n\\n### Timelion outlier-ananlyse\\nDette er et enkelt eksempel for \u00e5 finne outliers i dataene. Se p\u00e5 definisjonen av dashboard for \u00e5 styre parametrene. Her antar vi daglig data, og vi tar en moving average av eventer i de siste 7 dagene for \u00e5 fange den ukentlig trenden av dataene. S\u00e5 viser vi med r\u00f8de sirkler, de dagene hvor man ligger utenfor moving_average + 2 * moving_standard_deviation.\"},\"aggs\":[]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+      }
+    },
+    "version": 3
   }
 ]
