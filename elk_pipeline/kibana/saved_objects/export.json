@@ -166,21 +166,6 @@
     "version": 1
   },
   {
-    "type": "visualization",
-    "id": "14e23950-ecc6-11e8-b569-f1edcbeb32e0",
-    "attributes": {
-      "title": "timelion_oulier_analysis_application_log",
-      "visState": "{\"type\":\"timelion\",\"title\":\"timelion_oulier_analysis_application_log\",\"params\":{\"expression\":\"$fit=\\\"none\\\", \\n$window=7,   \\n$sigma=2, \\n .es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).sum(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)).lines(fill=2).color(#eee).label('OK values'),\\n \\n.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).subtract(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)).lines(fill=2).color(#eee).label('OK values'),\\n  \\n.es(index=\\\"logs_application\\\").fit($fit).color(#1E90FF),\\n\\n.es(index=\\\"logs_application\\\").condition(gt,.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).sum(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)),.es(index=\\\"logs_application\\\"),null).color(#c66).label(outliers).points(),\\n\\n.es(index=\\\"logs_application\\\").condition(lt,.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).subtract(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)),.es(index=\\\"logs_application\\\"),null).color(#c66).label(outliers).points()\",\"interval\":\"1d\"}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{}"
-      }
-    },
-    "version": 1
-  },
-  {
     "type": "dashboard",
     "id": "f24e39c0-e8ce-11e8-b3eb-5d7ee301d1d3",
     "attributes": {
@@ -199,6 +184,36 @@
   },
   {
     "type": "visualization",
+    "id": "895314c0-ecd6-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "access_heatmap_response_time_per_day",
+      "visState": "{\"title\":\"access_heatmap_response_time_per_day\",\"type\":\"heatmap\",\"params\":{\"type\":\"heatmap\",\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":4,\"colorSchema\":\"Blues\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"square root\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"overwriteColor\":false,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"timeRange\":{\"from\":\"now-90d\",\"to\":\"now\",\"mode\":\"quick\"},\"useNormalizedEsInterval\":true,\"interval\":\"auto\",\"time_zone\":\"Europe/Berlin\",\"drop_partials\":false,\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"histogram\",\"schema\":\"group\",\"params\":{\"field\":\"responsetime_in_ms\",\"interval\":10,\"extended_bounds\":{}}}]}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 9\":\"rgb(247,251,255)\",\"9 - 18\":\"rgb(198,219,239)\",\"18 - 27\":\"rgb(107,174,214)\",\"27 - 35\":\"rgb(33,113,181)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 1
+  },
+  {
+    "type": "visualization",
+    "id": "3e100080-ecd7-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "access_heatmap_days_vs_hours",
+      "visState": "{\"title\":\"access_heatmap_days_vs_hours\",\"type\":\"heatmap\",\"params\":{\"type\":\"heatmap\",\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":4,\"colorSchema\":\"Greens\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"overwriteColor\":false,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"segment\",\"params\":{\"filters\":[{\"input\":{\"query\":\"timestamp.day_of_week: Monday\"},\"label\":\"Mandag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Tuesday\"},\"label\":\"Tirsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Wednesday\"},\"label\":\"Onsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Thursday\"},\"label\":\"Torsdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Friday\"},\"label\":\"Fredag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Saturday\"},\"label\":\"L\u00f8rdag\"},{\"input\":{\"query\":\"timestamp.day_of_week: Sunday\"},\"label\":\"S\u00f8ndag\"}]}},{\"id\":\"3\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":\"timestamp.hour_of_day: [0 TO 7]\"},\"label\":\"\"},{\"input\":{\"query\":\"timestamp.hour_of_day: [8 TO 15]\"}},{\"input\":{\"query\":\"timestamp.hour_of_day: [16 TO 23]\"}}]}}]}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 40\":\"rgb(247,252,245)\",\"40 - 80\":\"rgb(199,233,192)\",\"80 - 120\":\"rgb(116,196,118)\",\"120 - 160\":\"rgb(35,139,69)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 1
+  },
+  {
+    "type": "visualization",
     "id": "97f258a0-ecc3-11e8-b569-f1edcbeb32e0",
     "attributes": {
       "title": "application_wiki",
@@ -211,5 +226,80 @@
       }
     },
     "version": 3
+  },
+  {
+    "type": "visualization",
+    "id": "97022710-ecd5-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "access_timeseries_top3_requests_with_95_percentile",
+      "visState": "{\"title\":\"access_timeseries_top3_requests_with_95_percentile\",\"type\":\"metrics\",\"params\":{\"id\":\"61ca57f0-469d-11e7-af02-69e470af7417\",\"type\":\"timeseries\",\"series\":[{\"id\":\"61ca57f1-469d-11e7-af02-69e470af7417\",\"color\":\"#68BC00\",\"split_mode\":\"terms\",\"metrics\":[{\"id\":\"61ca57f2-469d-11e7-af02-69e470af7417\",\"type\":\"avg\",\"field\":\"responsetime_in_ms\"}],\"separate_axis\":0,\"axis_position\":\"right\",\"formatter\":\"number\",\"chart_type\":\"line\",\"line_width\":1,\"point_size\":1,\"fill\":0.5,\"stacked\":\"none\",\"terms_field\":\"request.keyword\",\"terms_size\":\"3\"},{\"id\":\"5c87e840-ecd5-11e8-b3a4-7de6cb213209\",\"color\":\"rgba(0,84,188,1)\",\"split_mode\":\"everything\",\"metrics\":[{\"id\":\"5c87e841-ecd5-11e8-b3a4-7de6cb213209\",\"type\":\"percentile\",\"field\":\"responsetime_in_ms\",\"percentiles\":[{\"value\":\"95\",\"percentile\":\"\",\"shade\":0.2,\"id\":\"6a6ede00-ecd5-11e8-b3a4-7de6cb213209\",\"mode\":\"line\"}]}],\"separate_axis\":0,\"axis_position\":\"right\",\"formatter\":\"number\",\"chart_type\":\"line\",\"line_width\":1,\"point_size\":1,\"fill\":0.5,\"stacked\":\"none\"}],\"time_field\":\"@timestamp\",\"index_pattern\":\"logs*\",\"interval\":\"auto\",\"axis_position\":\"left\",\"axis_formatter\":\"number\",\"axis_scale\":\"normal\",\"show_legend\":1,\"show_grid\":1},\"aggs\":[]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 1
+  },
+  {
+    "type": "visualization",
+    "id": "056a1e70-ecd5-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "access_pie_response_codes",
+      "visState": "{\"title\":\"access_pie_response_codes\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true,\"labels\":{\"show\":true,\"values\":true,\"last_level\":true,\"truncate\":100}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"segment\",\"params\":{\"filters\":[{\"input\":{\"query\":\"responsecode: [200 TO 299]\"},\"label\":\"2XX\"},{\"input\":{\"query\":\"responsecode: [300 TO 399]\"},\"label\":\"3XX\"},{\"input\":{\"query\":\"responsecode: [400 TO 499]\"},\"label\":\"4XX\"}]}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"responsecode\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"\"}}]}",
+      "uiStateJSON": "{\"vis\":{\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 1
+  },
+  {
+    "type": "visualization",
+    "id": "bc2b1790-ecd5-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "access_pie_top_request",
+      "visState": "{\"title\":\"access_pie_top_request\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true,\"labels\":{\"show\":true,\"values\":true,\"last_level\":true,\"truncate\":100}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"request.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\"}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 1
+  },
+  {
+    "type": "visualization",
+    "id": "14e23950-ecc6-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "timelion_oulier_analysis_application_log",
+      "visState": "{\"type\":\"timelion\",\"title\":\"timelion_oulier_analysis_application_log\",\"params\":{\"expression\":\"$fit=\\\"none\\\", \\n$window=7,   \\n$sigma=2, \\n .es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).sum(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)).lines(fill=2).color(#eee).label('OK values'),\\n \\n.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).subtract(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)).lines(fill=2).color(#eee).label('OK values'),\\n  \\n.es(index=\\\"logs_application\\\").fit($fit).color(#1E90FF),\\n\\n.es(index=\\\"logs_application\\\").condition(gt,.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).sum(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)),.es(index=\\\"logs_application\\\"),null).color(#c66).label(outliers).points(),\\n\\n.es(index=\\\"logs_application\\\").condition(lt,.es(index=\\\"logs_application\\\").movingaverage($window,'center').if(eq, null, .es(index=\\\"logs_application\\\")).subtract(.es(index=\\\"logs_application\\\").mvstd($window).if(eq, null, 0).multiply($sigma)),.es(index=\\\"logs_application\\\"),null).color(#c66).label(outliers).points()\",\"interval\":\"1d\"}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{}"
+      }
+    },
+    "version": 1
+  },
+  {
+    "type": "visualization",
+    "id": "bc2698d0-ecd7-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "access_pie_top_hosts",
+      "visState": "{\"title\":\"access_pie_top_hosts\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true,\"labels\":{\"show\":false,\"values\":true,\"last_level\":true,\"truncate\":100}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"remote_host\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\"}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 1
   }
 ]
