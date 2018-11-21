@@ -82,7 +82,7 @@ Felt som ukedag og måned blir lagt til med Ruby-kode i `logstash/pipeline/logst
 
 ### Elasticsearch med index template
 
-Konfigurasjonen til Elasticsearch er definert i `elasticsearch/config/elasticsearch.yml`. Det defineres også en index template som tar seg av mappingen av loggindeksen. Denne er definert i `elasticsearch/mapping_template.json`.
+Konfigurasjonen til Elasticsearch er definert i `elasticsearch/config/elasticsearch.yml`. Det defineres også to indeksmaler som tar seg av mappingen til loggindeksene. Disse er definert i `elasticsearch/access_template.json` og `elasticsearch/application_template.json`.
 
 ### Kibana med logging dashboard og monitoring
 
