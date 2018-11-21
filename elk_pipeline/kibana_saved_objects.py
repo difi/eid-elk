@@ -36,13 +36,23 @@ def export_saved_objects(
     full_path = urljoin(kibana_host, 'api/saved_objects/_find')
     response = requests.get(full_path, auth=(username, password), headers=head,
                             params={
-                                "type": types,
-                                "per_page": 50
+                                'type': types,
+                                'per_page': 1
                             })
-    saved_objects = response.json()['saved_objects']
     if response.status_code != 200:
         print(response.status_code, response.text)
         return -1
+    n_saved_objects = response.json()['total']
+
+    response = requests.get(full_path, auth=(username, password), headers=head,
+                            params={
+                                'type': types,
+                                'per_page': n_saved_objects
+                            })
+    if response.status_code != 200:
+        print(response.status_code, response.text)
+        return -1
+    saved_objects = response.json()['saved_objects']
 
     # Remove "updated_at" key as it is now allowed when posting
     for object in saved_objects:
@@ -50,8 +60,6 @@ def export_saved_objects(
 
     with open(saved_objects_path, 'w') as fid:
         fid.write(json.dumps(saved_objects, indent=2))
-
-    return 0
 
 
 def import_saved_objects(
@@ -69,5 +77,3 @@ def import_saved_objects(
     if response.status_code != 200:
         print(response.status_code, response.text)
         return -1
-
-    return 0
