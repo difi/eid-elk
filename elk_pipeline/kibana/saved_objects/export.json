@@ -19,7 +19,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -34,7 +34,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -49,7 +49,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -64,7 +64,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":\"error\",\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -79,7 +79,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -94,7 +94,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "index-pattern",
@@ -107,7 +107,7 @@
     "migrationVersion": {
       "index-pattern": "6.5.0"
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "index-pattern",
@@ -120,7 +120,7 @@
     "migrationVersion": {
       "index-pattern": "6.5.0"
     },
-    "version": 2
+    "version": 3
   },
   {
     "type": "index-pattern",
@@ -133,7 +133,7 @@
     "migrationVersion": {
       "index-pattern": "6.5.0"
     },
-    "version": 5
+    "version": 3
   },
   {
     "type": "visualization",
@@ -148,7 +148,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 4
+    "version": 3
   },
   {
     "type": "visualization",
@@ -163,7 +163,7 @@
         "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "dashboard",
@@ -180,7 +180,24 @@
         "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
       }
     },
-    "version": 5
+    "version": 3
+  },
+  {
+    "type": "dashboard",
+    "id": "a3ed45c0-ecd7-11e8-b569-f1edcbeb32e0",
+    "attributes": {
+      "title": "access_log_dashboard",
+      "hits": 0,
+      "description": "Dashboard for access logger",
+      "panelsJSON": "[{\"gridData\":{\"x\":35,\"y\":0,\"w\":13,\"h\":11,\"i\":\"1\"},\"version\":\"6.5.0\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"id\":\"056a1e70-ecd5-11e8-b569-f1edcbeb32e0\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":0,\"y\":0,\"w\":35,\"h\":11,\"i\":\"2\"},\"version\":\"6.5.0\",\"panelIndex\":\"2\",\"type\":\"visualization\",\"id\":\"97022710-ecd5-11e8-b569-f1edcbeb32e0\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":0,\"y\":26,\"w\":24,\"h\":15,\"i\":\"3\"},\"version\":\"6.5.0\",\"panelIndex\":\"3\",\"type\":\"visualization\",\"id\":\"bc2b1790-ecd5-11e8-b569-f1edcbeb32e0\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":24,\"y\":11,\"w\":24,\"h\":15,\"i\":\"4\"},\"version\":\"6.5.0\",\"panelIndex\":\"4\",\"type\":\"visualization\",\"id\":\"895314c0-ecd6-11e8-b569-f1edcbeb32e0\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":0,\"y\":11,\"w\":24,\"h\":15,\"i\":\"5\"},\"version\":\"6.5.0\",\"panelIndex\":\"5\",\"type\":\"visualization\",\"id\":\"3e100080-ecd7-11e8-b569-f1edcbeb32e0\",\"embeddableConfig\":{}},{\"gridData\":{\"w\":24,\"h\":15,\"x\":24,\"y\":26,\"i\":\"6\"},\"version\":\"6.5.0\",\"panelIndex\":\"6\",\"type\":\"visualization\",\"id\":\"bc2698d0-ecd7-11e8-b569-f1edcbeb32e0\",\"embeddableConfig\":{}}]",
+      "optionsJSON": "{\"darkTheme\":false,\"useMargins\":true,\"hidePanelTitles\":false}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "version": 3
   },
   {
     "type": "visualization",
@@ -195,7 +212,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -210,7 +227,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -240,7 +257,7 @@
         "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -255,7 +272,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -270,7 +287,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -285,7 +302,7 @@
         "searchSourceJSON": "{}"
       }
     },
-    "version": 1
+    "version": 3
   },
   {
     "type": "visualization",
@@ -300,6 +317,6 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 1
+    "version": 3
   }
 ]

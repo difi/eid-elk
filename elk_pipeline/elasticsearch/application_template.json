@@ -109,7 +109,7 @@
         },
         "method": {
           "type": "text",
-          "analyzer": "dot_path_analyzer",          
+          "analyzer": "dot_path_analyzer",
           "fields": {
             "keyword": {
               "type": "keyword",
@@ -184,4 +184,3 @@
   },
   "aliases": {}
 }
-
