@@ -42,24 +42,31 @@ Kjør scriptet for å generere de store loggfilene:
 python create_large_logs.py
 ```
 
+### Sette variabel for Elastic versjon
+
+Kjør dette i konsolen for å sette riktig versjon av Elastic stacken:
+```bash
+export ELK_VERSION=6.5.1
+```
+
 ### Førstegangsinitialisering
 
 Eksempelet kjøres ved å først kjøre (kun første gang)
 ```bash
-$ ELK_VERSION=6.5.0 docker-compose build
-$ ELK_VERSION=6.5.0 ./initial_setup
+$ docker-compose build
+$ ./initial_setup
 ```
 
 ### Kjøre eksempelet
 
 og deretter
 ```bash
-$ ELK_VERSION=6.5.0 docker-compose up
+$ docker-compose up
 ```
 
 Ved debugging, der det ønskes å lese samme logg flere ganger, kan registry-filene til filebeat slettes først:
 ```bash
-$ rm filebeat_application_logs/data/registry filebeat_access_logs/data/registry && ELK_VERSION=6.5.0 docker-compose up
+$ rm filebeat_application_logs/data/registry filebeat_access_logs/data/registry && docker-compose up
 ```
 
 For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`. Etter å ha åpnet Kibana, gå til "Management", "Index Patterns" og velg en av index-patternene (`logs_access*` eller `logs_application*`) som favoritt.
@@ -93,3 +100,10 @@ Konfigurasjonen til Kibana ligger i `kibana/config/kibana.yml`. Siden X-Pack er 
 Et enkelt logging dashboard (med tilhørende index pattern og visualiseringer) ligger lagret i `kibana/saved_objects/export.json`, og importeres som en del av `initial_setup`-scriptet.
 
 Det er verdt å legge merke til at, per versjon 6.5.0, objekter som eksporteres fra GUIet til Kibana ikke kompatible for import via APIet, og vice versa. `export.json` ble exportert med APIet, og kan derfor ikke importeres gjennom GUIet. Nyttige funksjoner for export og import gjennom Saved Objects APIet til Kibana finnes i `kibana_saved_objects.py`.
+
+For å se på monitorering av logstash du kan åpne:
+ - [Logstash monitorering i kibana](http://localhost:5601/app/monitoring#/logstash/)
+ - API endepunkt logstash [pipelines](http://localhost:9600/_node/stats/pipelines?pretty). 
+ - API endepunkt logstash [jvm](http://localhost:9600/_node/stats/jvm?pretty)
+ - API endepunkt logstash [events](http://localhost:9600/_node/stats/events?pretty)
+ - Dokumentasjon av logstash [Monitoring API](https://www.elastic.co/guide/en/logstash/current/monitoring.html)
