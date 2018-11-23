@@ -1,0 +1,98 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.12
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - elk
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  logstash:
+    build:
+      context: logstash/
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+    ports:
+      - "5000:5000"
+      - "9600:9600"
+    environment:
+      - "PATH_CONFIG=/usr/share/logstash/pipeline"
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+    networks:
+      - elk
+    depends_on:
+      - graylog
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:5.6.12
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./logs:/mnt/logs:ro
+      - ./filebeat/data:/usr/share/filebeat/data/
+    networks:
+      - elk
+    depends_on:
+      - logstash
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:5.6.12
+    volumes:
+      - ./kibana/config:/usr/share/kibana/config:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  # MongoDB: https://hub.docker.com/_/mongo/
+  mongo:
+    image: mongo:3
+#     volumes:
+#       - ./mongo/data:/data/db
+    networks:
+      - elk
+
+  graylog:
+    image: graylog/graylog:2.4
+    volumes:
+#      - ./graylog/journal:/usr/share/graylog/data/journal
+      - ./graylog/config:/usr/share/graylog/data/config
+    environment:
+      - GRAYLOG_PASSWORD_SECRET=0mP52f6MkfVNy0axZpGS3jfcSmjlDsIDa4m68Yb8rMtyCpaoAz0XMA5bBal1crVE
+      # Root password: admin
+      - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+      - GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9000/api
+      - GRAYLOG_ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      # Graylog web interface and REST API
+      - 9000:9000
+      # Syslog TCP
+      - 514:514
+      # Syslog UDP
+      - 514:514/udp
+      # GELF TCP
+      - 12201:12201
+      # GELF UDP
+      - 12201:12201/udp
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+      - mongo
+
+networks:
+  elk:
+    driver: bridge
