@@ -2,15 +2,13 @@
 # original logfile is picked and combined with the current date.
 
 import os
-from datetime import datetime, timezone
+from datetime import datetime
 import random
 import time
 import pytz
 
 # User configurable options
 seconds_between_events = 1
-min_date = datetime(2018, 1, 1)
-max_date = datetime.now()
 input_log = './logs/large_access_log.log'
 output_log = './logs/stream.log'
 

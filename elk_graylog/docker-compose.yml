@@ -3,9 +3,10 @@ version: '2'
 services:
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.12
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.13
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
@@ -36,18 +37,18 @@ services:
       - graylog
 
   filebeat:
-    image: docker.elastic.co/beats/filebeat:5.6.12
+    image: docker.elastic.co/beats/filebeat:5.6.13
     volumes:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-      - ./logs:/mnt/logs:ro
       - ./filebeat/data:/usr/share/filebeat/data/
+      - ./logs:/mnt/logs:ro
     networks:
       - elk
     depends_on:
       - logstash
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:5.6.12
+    image: docker.elastic.co/kibana/kibana:5.6.13
     volumes:
       - ./kibana/config:/usr/share/kibana/config:ro
     ports:
@@ -60,15 +61,15 @@ services:
   # MongoDB: https://hub.docker.com/_/mongo/
   mongo:
     image: mongo:3
-#     volumes:
-#       - ./mongo/data:/data/db
+    volumes:
+      - ./mongo/data:/data/db
     networks:
       - elk
 
   graylog:
     image: graylog/graylog:2.4
     volumes:
-#      - ./graylog/journal:/usr/share/graylog/data/journal
+      - ./graylog/journal:/usr/share/graylog/data/journal
       - ./graylog/config:/usr/share/graylog/data/config
     environment:
       - GRAYLOG_PASSWORD_SECRET=0mP52f6MkfVNy0axZpGS3jfcSmjlDsIDa4m68Yb8rMtyCpaoAz0XMA5bBal1crVE

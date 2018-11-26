@@ -1,0 +1,184 @@
+{
+  "template": "logs_access*",
+  "order": 0,
+  "mappings" : {
+    "message" : {
+      "properties" : {
+        "beat_hostname" : {
+          "type" : "text",
+          "analyzer": "standard",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "beat_name" : {
+          "type" : "text",
+          "analyzer": "standard",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "beat_version" : {
+          "type" : "text",
+          "analyzer": "standard",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "correlation_id" : {
+          "type" : "keyword"
+        },
+        "fields" : {
+          "properties" : {
+            "log_type" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "full_message": {
+          "type": "text",
+          "analyzer": "standard",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "host" : {
+          "properties" : {
+            "name" : {
+              "type" : "text",
+              "analyzer": "standard",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "httpversion" : {
+          "type" : "keyword"
+        },
+        "input" : {
+          "properties" : {
+            "type" : {
+              "type" : "text",
+              "analyzer": "standard",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "message": {
+          "type": "text",
+          "analyzer": "standard"
+        },
+        "offset" : {
+          "type" : "long"
+        },
+        "prospector" : {
+          "properties" : {
+            "type" : {
+              "type" : "text",
+              "analyzer": "standard",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        },
+        "remote_host" : {
+          "type" : "keyword"
+        },
+        "remote_logical_user" : {
+          "type" : "keyword"
+        },
+        "remote_user" : {
+          "type" : "keyword"
+        },
+        "request" : {
+          "type" : "text",
+          "analyzer": "standard",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "responsecode" : {
+          "type" : "integer"
+        },
+        "responsetime_in_ms" : {
+          "type" : "integer"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "source" : {
+          "type" : "text",
+          "analyzer": "standard",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "tags" : {
+          "type" : "text",
+          "analyzer": "standard",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "timestamp_day_of_month": {
+          "type": "string"
+        },
+        "timestamp_day_of_week": {
+          "type": "keyword"
+        },
+        "timestamp_day_of_year": {
+          "type": "integer"
+        },
+        "timestamp_hour_of_day": {
+          "type": "integer"
+        },
+        "timestamp_minute_of_hour": {
+          "type": "integer"
+        },
+        "timestamp_month_of_year": {
+          "type": "keyword"
+        },
+        "timestamp_week_number": {
+          "type": "integer"
+        },
+        "verb" : {
+          "type" : "keyword"
+        }
+      }
+    }
+  }
+}

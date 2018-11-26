@@ -1,0 +1,13 @@
+#!/bin/bash
+
+docker-compose up -d mongo elasticsearch graylog
+
+sleep 45
+
+# Add mapping template
+curl -X PUT -u elastic:changeme "localhost:9200/_template/access_logs_template" -H 'Content-Type: application/json' -d @elasticsearch/access_template.json
+echo
+
+python graylog_setup.py
+
+docker-compose stop mongo elasticsearch graylog
