@@ -47,6 +47,10 @@ $ sudo rm -rf elasticsearch/data mongo/data filebeat/data graylog/journal
 ```
 I linux opplever vi at filene under `graylog/journal` og `mongo/data` blir opprettet med en annen brukeren enn din bruker, pga hvordan docker imaget er satt opp. Derfor kjører vi disse kommandoene som `sudo`.
 
+Hvis man trenger ikke persistering av data, så kan man fjerne følgene `volumes` fra `docker-compose.yml`:
+- `./graylog/journal:/usr/share/graylog/data/journal`
+- `./mongo/data:/data/db`
+
 ## Aksessere GUI
 
 Du kan nå aksessere Graylog i [http://localhost:9000/](http://localhost:9000/). 
