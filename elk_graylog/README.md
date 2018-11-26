@@ -19,15 +19,13 @@ Alle komponenter (Elasticsearch, Logstash, Filebeat, Graylog, MongoDB) kjører i
 $ docker-compose up
 ```
 
-Det er viktig å la Docker få tilgang til nok ressurser, vi kjører for øyeblikket Docker med tilgang til 6 CPUer og 6GiB RAM.
+Det er viktig å la Docker få tilgang til nok ressurser, vi kjører for øyeblikket Docker med tilgang til 6 CPUer og 6 GiB RAM.
 
 ## Generere loggmeldinger
 
 Scriptet `stream_log.py` kan brukes til å kontinuerlig skrive logglinjer til en fil som overvåkes av filebat. Som standard er filen som overvåkes (og skrives til av `stream_log.py`) `logs/stream.log`.  Denne trenger en loggfil i access-loggformat som den kan bygge nye logger på, denne angis med `input_log`-variabelen. Et eksempel på en slik fil er `difi-pt2-ki-web01.os.eon.no__var_log_dpi-registration_access_log.log.20181009`.
 
 ## Beskrivelse av pipeline
-
-Loggfilen `logs/stream.log` leses av Filebeat (konfigurasjonsfil `filebeat/filebeat.yml`) og hver hendelse sendes til Logstash (konfigurasjonsfil `logstash/config/logstash.yml`). Her parses loggen (konfigurasjonsfil `logstash/pipeline/access_logs.conf`) før den sendes til Graylog.
 
 Scriptet `initial_setup` gjør det initielle oppsettet ved å
 1. Opprette en index template i Elasticsearch for loggene.
