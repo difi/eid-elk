@@ -45,5 +45,12 @@ Pipelinene fungerer som følger:
 Dersom man ønsker å starte helt på nytt er det mulig ved å gjøre:
 ```bash
 $ docker-compose down
-$ rm -rf elasticsearch/data mongo/data filebeat/data graylog/journal
+$ sudo rm -rf elasticsearch/data mongo/data filebeat/data graylog/journal
 ```
+I linux opplever vi at filene under `graylog/journal` og `mongo/data` blir opprettet med en annen brukeren enn din bruker, pga hvordan docker imaget er satt opp. Derfor kjører vi disse kommandoene som `sudo`.
+
+## Aksessere GUI
+
+Du kan nå aksessere Graylog i [http://localhost:9000/](http://localhost:9000/). 
+Bruk default brukernavn `admin` med default passord `admin` for å få tilgang.
+
