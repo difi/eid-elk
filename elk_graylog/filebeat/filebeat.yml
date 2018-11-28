@@ -1,9 +1,9 @@
 filebeat.prospectors:
 - input_type: log
   paths:
-    - /mnt/logs/stream.log
+    - /mnt/logs/StatusAndAudit_source.json
   fields:
-    log_type: 'access_log'
+    log_type: 'logs_status_and_audit'
 
 output.logstash:
   hosts: ['logstash:5044']

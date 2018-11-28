@@ -12,9 +12,11 @@ docker-compose up mongo elasticsearch graylog &
 sleep 45
 
 # Add mapping template
-curl -X PUT -u elastic:changeme "localhost:9200/_template/access_logs_template" -H 'Content-Type: application/json' -d @elasticsearch/access_template.json
+curl -X PUT -u elastic:changeme "localhost:9200/_template/logs_status_and_audit_template" -H 'Content-Type: application/json' -d @elasticsearch/logs_status_and_audit_template.json
 echo
 
 python graylog_setup.py
 
 docker-compose stop mongo elasticsearch graylog
+
+# Skriv om at det er nødvendig å gjøre det manuelt. Manglende API-dokumentasjon Skriv om hva pipelinen gjør og hvorfor. Også om feiling av meldinger ved sending, ...

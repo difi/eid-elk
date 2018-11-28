@@ -19,7 +19,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -34,7 +34,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -49,7 +49,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -64,7 +64,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":\"error\",\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -79,7 +79,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"level\",\"value\":\"ERROR\",\"params\":{\"query\":\"ERROR\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"level\":{\"query\":\"ERROR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -94,7 +94,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "index-pattern",
@@ -107,7 +107,7 @@
     "migrationVersion": {
       "index-pattern": "6.5.0"
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "index-pattern",
@@ -120,7 +120,7 @@
     "migrationVersion": {
       "index-pattern": "6.5.0"
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "index-pattern",
@@ -133,7 +133,7 @@
     "migrationVersion": {
       "index-pattern": "6.5.0"
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -148,7 +148,7 @@
         "searchSourceJSON": "{\"index\":\"e21ad600-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -163,7 +163,7 @@
         "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "dashboard",
@@ -180,7 +180,7 @@
         "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "dashboard",
@@ -197,7 +197,7 @@
         "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -212,7 +212,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -227,7 +227,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -242,7 +242,7 @@
         "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -257,7 +257,7 @@
         "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -272,7 +272,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -287,7 +287,7 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -302,7 +302,7 @@
         "searchSourceJSON": "{}"
       }
     },
-    "version": 3
+    "version": 1
   },
   {
     "type": "visualization",
@@ -317,6 +317,6 @@
         "searchSourceJSON": "{\"index\":\"d77d65f0-ebce-11e8-abb1-9327e73c38bf\",\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
       }
     },
-    "version": 3
+    "version": 1
   }
 ]

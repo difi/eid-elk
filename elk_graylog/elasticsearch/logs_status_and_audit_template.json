@@ -1,0 +1,209 @@
+{
+  "template": "logs_status_and_audit*",
+  "order": 0,
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "dot_path_analyzer": {
+            "tokenizer": "dot_path_tokenizer"
+          }
+        },
+        "tokenizer": {
+          "dot_path_tokenizer": {
+            "type": "path_hierarchy",
+            "delimiter": ".",
+            "reverse": true
+          }
+        }
+      }
+    }
+  },
+  "mappings" : {
+    "message" : {
+      "properties": {
+        "HOSTNAME": {
+          "type": "keyword"
+        },
+        "altinn-receipt-id": {
+          "type": "keyword"
+        },
+        "altinn-status-code": {
+          "type": "keyword"
+        },
+        "altinn-text": {
+          "type": "text",
+          "analyzer": "standard",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "appname": {
+          "type": "keyword"
+        },
+        "beat_hostname": {
+          "type": "keyword"
+        },
+        "beat_name": {
+          "type": "keyword"
+        },
+        "beat_version": {
+          "type": "keyword"
+        },
+        "buildinfo_lastcommit": {
+          "type": "keyword"
+        },
+        "buildinfo_version": {
+          "type": "text",
+          "analyzer": "dot_path_analyzer",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "conversation_id": {
+          "type": "keyword"
+        },
+        "direction": {
+          "type": "keyword"
+        },
+        "document_id": {
+          "type": "keyword"
+        },
+        "facility": {
+          "type": "keyword"
+        },
+        "fields_log_type": {
+          "type": "keyword"
+        },
+        "fiks-id": {
+          "type": "keyword"
+        },
+        "full_message": {
+          "type": "text",
+          "analyzer": "standard"
+        },
+        "gl2_remote_ip": {
+          "type": "keyword"
+        },
+        "gl2_remote_port": {
+          "type": "keyword"
+        },
+        "gl2_source_input": {
+          "type": "keyword"
+        },
+        "gl2_source_node": {
+          "type": "keyword"
+        },
+        "input_type": {
+          "type": "keyword"
+        },
+        "journalpost_id": {
+          "type": "keyword"
+        },
+        "level": {
+          "type": "long"
+        },
+        "level_value": {
+          "type": "long"
+        },
+        "logger_name": {
+          "type": "keyword"
+        },
+        "loglevel": {
+          "type": "keyword"
+        },
+        "message": {
+          "type": "text",
+          "analyzer": "standard"
+        },
+        "message-type": {
+          "type": "keyword"
+        },
+        "offset": {
+          "type": "long"
+        },
+        "orgnr": {
+          "type": "keyword"
+        },
+        "payload_size_in_KB": {
+          "type": "float"
+        },
+        "port": {
+          "type": "long"
+        },
+        "protocol": {
+          "type": "long"
+        },
+        "receipt-type": {
+          "type": "keyword"
+        },
+        "receiver_org_number": {
+          "type": "keyword"
+        },
+        "response-message-code": {
+          "type": "keyword"
+        },
+        "response-message-text": {
+          "type": "text",
+          "analyzer": "standard",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "response-type": {
+          "type": "keyword"
+        },
+        "sender_org_number": {
+          "type": "keyword"
+        },
+        "serviceIdentifier": {
+          "type": "keyword"
+        },
+        "service_identifier": {
+          "type": "keyword"
+        },
+        "serviceidentifier": {
+          "type": "keyword"
+        },
+        "soap_fault_xml": {
+          "type": "text",
+          "analyzer": "standard"
+        },
+        "soap_fault_Code": {
+          "type": "keyword"
+        },
+        "soap_fault_Reason": {
+          "type": "keyword"
+        },
+        "stack_trace": {
+          "type": "text",
+          "analyzer": "standard",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "tags": {
+          "type": "keyword"
+        },
+        "thread_name": {
+          "type": "keyword"
+        },
+        "type": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
