@@ -18,6 +18,7 @@ head = {
 
 types_default = ['visualization', 'dashboard', 'search', 'index-pattern']
 
+
 def export_saved_objects(
         kibana_host=kibana_host_default,
         saved_objects_path=saved_objects_path_default,
@@ -26,13 +27,13 @@ def export_saved_objects(
         types=types_default
 ):
     """
-
     :param kibana_host: Address to Kibana
     :param saved_objects_path: Full address of json file to save objects to
     :param username: Kibana username
     :param password: Kibana password
-    :return:
+    :param types: List of Kibana object types to export
     """
+
     full_path = urljoin(kibana_host, 'api/saved_objects/_find')
     response = requests.get(full_path, auth=(username, password), headers=head,
                             params={
@@ -68,6 +69,13 @@ def import_saved_objects(
         username=username_default,
         password=password_default
 ):
+    """
+    :param kibana_host: Address to Kibana
+    :param saved_objects_path: Full address of json file to save objects to
+    :param username: Kibana username
+    :param password: Kibana password
+    """
+
     with open(saved_objects_path, 'r') as fid:
         saved_objects = fid.read()
 

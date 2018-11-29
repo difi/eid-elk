@@ -9,8 +9,8 @@ from datetime import datetime
 import random
 
 # User configurable options
-n_log_lines_to_generate = 10000
-min_date = datetime(2018, 1, 1)
+n_log_lines_to_generate = 100000
+min_date = datetime(2017, 1, 1)
 max_date = datetime.now()
 input_logs_dir = [
     './application_logs',
