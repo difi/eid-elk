@@ -107,3 +107,12 @@ For å se på monitorering av logstash du kan åpne:
  - API endepunkt logstash [jvm](http://localhost:9600/_node/stats/jvm?pretty)
  - API endepunkt logstash [events](http://localhost:9600/_node/stats/events?pretty)
  - Dokumentasjon av logstash [Monitoring API](https://www.elastic.co/guide/en/logstash/current/monitoring.html)
+
+
+## Machine Learning
+
+When the indexing of the logs is done, one can add the machine learning job example by running:
+
+```bash
+$ ./ml-jobs.sh
+```

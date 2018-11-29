@@ -6,21 +6,34 @@ mkdir -p logstash/dead_letter_queue
 
 docker-compose up -d elasticsearch kibana
 
-sleep 30
+ELASTIC_PASSWORD=changeme
+es_url=http://elastic:$ELASTIC_PASSWORD@localhost:9200
+kibana_url=http://localhost:5601
+
+# Wait for Elasticsearch to start up before doing anything.
+echo Waiting for Elasticsearch to start...
+until curl -s $es_url -o /dev/null; do
+    sleep 1
+    echo .
+done
 
 # X-pack
-curl -X POST -u elastic:changeme "localhost:9200/_xpack/license/start_trial?acknowledge=true"
-curl -X PUT -u elastic:changeme "localhost:9200/_xpack/security/user/logstash_system/_password" -H 'Content-Type: application/json' -d'
-{
-  "password": "changeme"
-}
-'
+curl -s -H 'Content-Type:application/json' \
+     -XPOST $es_url/_xpack/license/start_trial?acknowledge=true 
+
+
+curl -s -H 'Content-Type:application/json' \
+     -XPUT $es_url/_xpack/security/user/logstash_system/_password \
+     -d "{\"password\": \"${ELASTIC_PASSWORD}\"}"
 
 # Add mapping templates
-curl -X PUT -u elastic:changeme "localhost:9200/_template/application_template" -H 'Content-Type: application/json' -d @elasticsearch/application_template.json
-curl -X PUT -u elastic:changeme "localhost:9200/_template/access_template" -H 'Content-Type: application/json' -d @elasticsearch/access_template.json
+curl -s -XPUT $es_url/_template/application_template -H 'Content-Type: application/json' -d @elasticsearch/application_template.json
+curl -s -XPUT $es_url/_template/access_template -H 'Content-Type: application/json' -d @elasticsearch/access_template.json
 
 # Add Kibana index pattern, dashboard
-curl -X POST -u elastic:changeme "localhost:5601/api/saved_objects/_bulk_create" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d @kibana/saved_objects/export.json > /dev/null
+curl -X POST -u elastic:changeme localhost:5601/api/saved_objects/_bulk_create -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d @kibana/saved_objects/export.json > /dev/null
+
+# Check why this fails?
+#curl -X POST -u elastic:${ELASTIC_PASSWORD} $kibana_url/api/saved_objects/_bulk_create -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d @kibana/saved_objects/export.json > /dev/null
 
 docker-compose stop elasticsearch kibana
