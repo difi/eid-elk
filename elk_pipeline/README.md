@@ -1,6 +1,6 @@
 # Eksempel på logging-pipeline med filebeat, logstash og elasticsearch
 
-Dette er et eksempel på lesing av logger (som potensielt strekker seg over flere linjer) med filebeat, parsing av disse med logstash pipelines, indeksering i Elasticsearch med et enkelt tilknyttet dashboard.
+Dette er et eksempel på lesing av logger (som potensielt strekker seg over flere linjer) med filebeat, parsing av disse med logstash pipelines, og indeksering i Elasticsearch med tilknyttet dashboard i Kibana.
 
 Docker-bildene som brukes har X-Pack aktivert for monitorering av både Elasticsearch og Logstash.
 
@@ -8,7 +8,7 @@ Docker-bildene som brukes har X-Pack aktivert for monitorering av både Elastics
 
 ### Generere eller klargjøre loggfiler
 
-Scriptet `generate_large_log.py` kan brukes til å generere en stor loggfil med datoer i ønsket område. Scriptet tar utgangspunkt i et sett med loggfiler som ligger i to mapper. Gjør som følge:
+Scriptet `generate_large_log.py` kan brukes til å generere en stor loggfil med datoer i ønsket område. Scriptet tar utgangspunkt i et sett med loggfiler som ligger i to mapper. Gjør som følger:
 
 Applikasjonslogger fra `oidc-prod-20181009.zip` plasseres i mappen `./application_logs`. Vi har brukt følgende filer:
 ```
@@ -44,7 +44,7 @@ python create_large_logs.py
 
 ### Sette variabel for Elastic versjon
 
-Kjør dette i konsolen for å sette riktig versjon av Elastic stacken:
+Kjør dette i konsolen for å sette ønsket versjon av Elastic-stacken:
 ```bash
 export ELK_VERSION=6.5.1
 ```
@@ -69,17 +69,17 @@ Ved debugging, der det ønskes å lese samme logg flere ganger, kan registry-fil
 $ rm filebeat_application_logs/data/registry filebeat_access_logs/data/registry && docker-compose up
 ```
 
-For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`. Etter å ha åpnet Kibana, gå til "Management", "Index Patterns" og velg en av index-patternene (`logs_access*` eller `logs_application*`) som favoritt.
+For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`. Etter å ha åpnet Kibana, gå til "Management", "Index Patterns" og velg en av index-patternene som favoritt.
 
 ## Konfigurasjon
 
 ### Filebeat med multiline
 
-Filebeat er konfigurert til å lese loggfiler fra mappen `logs` og sende dem til Logstash. Configurasjonen av filebeat litter i `filebeat/filebeat.yml`, les mer om multiline i Filebeat [her](https://www.elastic.co/guide/en/beats/filebeat/current/multiline-examples.html).
+Filebeat er konfigurert til å lese loggfiler fra mappen `logs` og sende dem til Logstash. Konfigurasjonen av filebeat ligger i `filebeat_*/filebeat.yml`, les mer om multiline i Filebeat [her](https://www.elastic.co/guide/en/beats/filebeat/current/multiline-examples.html).
 
 ### Logstash med to pipelines, dissect og feltaugmentering
 
-Logstash tar imot logghendelsene fra Filebeat og prosesserer dem i dette eksempelet i to pipeliner, en for tilgang- og en for applikasjonslogger. Konfigurasjonen til Logstash ligger i `logstash/config/logstash.yml`, mens pipelinekonfigurasjonene ligger i `logstash/config/access_logs.conf` og `logstash/config/application_logs.conf`. I konfigurasjonen av pipelinene er persistent queue aktivert, som betyr at Logstash kan håndtere flom av hendelser og garanterer minst en levering av hver hendelse. Les mer om logstash pipelines [her](https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html) og persistent queues [her](https://www.elastic.co/guide/en/logstash/current/persistent-queues.html).
+Logstash tar imot logghendelsene fra Filebeat og prosesserer dem i dette eksempelet i to pipeliner, en for tilgang- og en for applikasjonslogger. Konfigurasjonen til Logstash ligger i `logstash/config/logstash.yml`, mens pipelinekonfigurasjonen ligger i `logstash/config/pipelines.yml`, med pipelinene i `logstash/config/access_logs.conf` og `logstash/config/application_logs.conf`. I konfigurasjonen av pipelinene er persistent kø aktivert, som betyr at Logstash kan håndtere flom av hendelser og garanterer minst en levering av hver hendelse. Les mer om logstash pipelines [her](https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html) og persistente køer [her](https://www.elastic.co/guide/en/logstash/current/persistent-queues.html).
 
 I Logstash-pipelinene blir dissect-filter brukt til å parse loggene. Når det er mulig å bruke dissect istedenfor grok kan det lønne seg siden dissect er raskere, se flere detaljer [her](https://www.elastic.co/guide/en/logstash/current/plugins-filters-dissect.html).
 
@@ -97,13 +97,13 @@ For å logge inn i Kibana er brukernavnet `elastic` og passordet `changeme`.
 
 Konfigurasjonen til Kibana ligger i `kibana/config/kibana.yml`. Siden X-Pack er aktivert kan Logstash, Kibana og Elasticsearch monitoreres i Kibana. Spesielt kan det være interessant å følge med på Logstash under indekseringen.
 
-Et enkelt logging dashboard (med tilhørende index pattern og visualiseringer) ligger lagret i `kibana/saved_objects/export.json`, og importeres som en del av `initial_setup`-scriptet.
+Et enkelt logging-dashboard (med tilhørende index pattern og visualiseringer) ligger lagret i `kibana/saved_objects/export.json`, og importeres som en del av `initial_setup`-scriptet.
 
-Det er verdt å legge merke til at, per versjon 6.5.0, objekter som eksporteres fra GUIet til Kibana ikke kompatible for import via APIet, og vice versa. `export.json` ble exportert med APIet, og kan derfor ikke importeres gjennom GUIet. Nyttige funksjoner for export og import gjennom Saved Objects APIet til Kibana finnes i `kibana_saved_objects.py`.
+Det er verdt å legge merke til at, per versjon 6.5.1, objekter som eksporteres fra GUIet til Kibana ikke kompatible for import via APIet, og vice versa. `export.json` ble exportert med APIet, og kan derfor ikke importeres gjennom GUIet. Nyttige funksjoner for export og import gjennom Saved Objects APIet til Kibana finnes i `kibana_saved_objects.py`.
 
 For å se på monitorering av logstash du kan åpne:
  - [Logstash monitorering i kibana](http://localhost:5601/app/monitoring#/logstash/)
- - API endepunkt logstash [pipelines](http://localhost:9600/_node/stats/pipelines?pretty). 
- - API endepunkt logstash [jvm](http://localhost:9600/_node/stats/jvm?pretty)
- - API endepunkt logstash [events](http://localhost:9600/_node/stats/events?pretty)
- - Dokumentasjon av logstash [Monitoring API](https://www.elastic.co/guide/en/logstash/current/monitoring.html)
+ - API-endepunkt for logstash [pipelines](http://localhost:9600/_node/stats/pipelines?pretty). 
+ - API-endepunkt for logstash [jvm](http://localhost:9600/_node/stats/jvm?pretty)
+ - API-endepunkt for logstash [events](http://localhost:9600/_node/stats/events?pretty)
+ - Dokumentasjon av logstash sitt [Monitoring API](https://www.elastic.co/guide/en/logstash/current/monitoring.html)
