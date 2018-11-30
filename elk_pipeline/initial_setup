@@ -6,34 +6,48 @@ mkdir -p logstash/dead_letter_queue
 
 docker-compose up -d elasticsearch kibana
 
-ELASTIC_PASSWORD=changeme
-es_url=http://elastic:$ELASTIC_PASSWORD@localhost:9200
-kibana_url=http://localhost:5601
+ELASTIC_USERNAME="elastic"
+ELASTIC_PASSWORD="changeme"
+ES_URL="http://$ELASTIC_USERNAME:$ELASTIC_PASSWORD@localhost:9200"
+KIBANA_URL="http://localhost:5601"
 
-# Wait for Elasticsearch to start up before doing anything.
-echo Waiting for Elasticsearch to start...
-until curl -s $es_url -o /dev/null; do
+# Wait for Elasticsearch to start
+echo -n Waiting for Elasticsearch to start...
+until curl -s $ES_URL -o /dev/null; do
     sleep 1
-    echo .
+    echo -n .
 done
+echo
 
 # X-pack
+echo Activating X-Pack trail
 curl -s -H 'Content-Type:application/json' \
-     -XPOST $es_url/_xpack/license/start_trial?acknowledge=true 
-
-
+     -X POST $ES_URL/_xpack/license/start_trial?acknowledge=true \
+     -o /dev/null
+echo Setting password for Logstash
 curl -s -H 'Content-Type:application/json' \
-     -XPUT $es_url/_xpack/security/user/logstash_system/_password \
-     -d "{\"password\": \"${ELASTIC_PASSWORD}\"}"
+     -X PUT $ES_URL/_xpack/security/user/logstash_system/_password \
+     -d "{\"password\": \"${ELASTIC_PASSWORD}\"}" -o /dev/null
 
 # Add mapping templates
-curl -s -XPUT $es_url/_template/application_template -H 'Content-Type: application/json' -d @elasticsearch/application_template.json
-curl -s -XPUT $es_url/_template/access_template -H 'Content-Type: application/json' -d @elasticsearch/access_template.json
+echo Adding application logs index template to Elasticsearch
+curl -s -H 'Content-Type: application/json' \
+     -X PUT $ES_URL/_template/application_template \
+     -d @elasticsearch/application_template.json -o /dev/null
+echo Adding access logs index template to Elasticsearch
+curl -s -H 'Content-Type: application/json' \
+     -X PUT $ES_URL/_template/access_template \
+     -d @elasticsearch/access_template.json -o /dev/null
+
+# Wait for Kibana to start
+echo Waiting for Kibana to start...
+sleep 10
 
 # Add Kibana index pattern, dashboard
-curl -X POST -u elastic:changeme localhost:5601/api/saved_objects/_bulk_create -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d @kibana/saved_objects/export.json > /dev/null
+echo Adding saved objects to Kibana
+curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' \
+     -X POST -u $ELASTIC_USERNAME:$ELASTIC_PASSWORD \
+     $KIBANA_URL/api/saved_objects/_bulk_create \
+     -d @kibana/saved_objects/export.json -o /dev/null
 
-# Check why this fails?
-#curl -X POST -u elastic:${ELASTIC_PASSWORD} $kibana_url/api/saved_objects/_bulk_create -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d @kibana/saved_objects/export.json > /dev/null
-
-docker-compose stop elasticsearch kibana
+# docker-compose stop elasticsearch kibana

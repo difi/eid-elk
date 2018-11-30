@@ -1,12 +1,13 @@
 #!/bin/bash
 
+ELASTIC_USERNAME=elastic
 ELASTIC_PASSWORD=changeme
-es_url=http://elastic:$ELASTIC_PASSWORD@localhost:9200
+ES_URL="http://$ELASTIC_USERNAME:$ELASTIC_PASSWORD@localhost:9200"
 
 
 printf "Defining the job..."
 curl -s -H 'Content-Type: application/json' \
-     -X PUT $es_url/_xpack/ml/anomaly_detectors/access-log-event-responsetime-size \
+     -X PUT $ES_URL/_xpack/ml/anomaly_detectors/access-log-event-responsetime-size \
      -d'
 {
   "description": "Access log multiple anomaly in event count, response time and response size",
@@ -47,13 +48,13 @@ curl -s -H 'Content-Type: application/json' \
 }' > /dev/null
 
 # Open the job for execution
-printf "\nOpening the job: "  
+printf "\nOpening the job: "
 curl -s -H 'Content-Type:application/json' \
-     -X POST $es_url/_xpack/ml/anomaly_detectors/access-log-event-responsetime-size/_open
+     -X POST $ES_URL/_xpack/ml/anomaly_detectors/access-log-event-responsetime-size/_open
 
-# define a data feed to connect the job to the data
+# Define a data feed to connect the job to the data
 curl -s -H 'Content-Type:application/json' \
-     -X PUT $es_url/_xpack/ml/datafeeds/datafeed-access-log-event-responsetime-size \
+     -X PUT $ES_URL/_xpack/ml/datafeeds/datafeed-access-log-event-responsetime-size \
      -d'
 {
   "job_id": "access-log-event-responsetime-size",
@@ -61,9 +62,9 @@ curl -s -H 'Content-Type:application/json' \
 }'
 
 # Start the job
-printf "\nExecuting the job: " 
+printf "\nExecuting the job: "
 curl -s -H 'Content-Type:application/json' \
-     -X POST $es_url/_xpack/ml/datafeeds/datafeed-access-log-event-responsetime-size/_start
+     -X POST $ES_URL/_xpack/ml/datafeeds/datafeed-access-log-event-responsetime-size/_start
 
 printf "\nWaiting for the job to finish"
 sleep 20
@@ -71,11 +72,11 @@ sleep 20
 # Stop the data feed
 printf "\nStopping the job... "
 curl -s -H 'Content-Type:application/json' \
-     -X POST $es_url/_xpack/ml/datafeeds/datafeed-access-log-event-responsetime-size/_stop
+     -X POST $ES_URL/_xpack/ml/datafeeds/datafeed-access-log-event-responsetime-size/_stop
 
 # Close the job for execution
 printf "\nClosing the job: "
 curl -s -H 'Content-Type:application/json' \
-     -X POST $es_url/_xpack/ml/anomaly_detectors/access-log-event-responsetime-size/_close
+     -X POST $ES_URL/_xpack/ml/anomaly_detectors/access-log-event-responsetime-size/_close
 
-printf "\ndone."
+printf "\ndone.\n"
