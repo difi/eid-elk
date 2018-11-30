@@ -3,6 +3,7 @@
 mkdir -p elasticsearch/data
 mkdir -p mongo/data
 mkdir -p filebeat/data
+mkdir -p graylog/ids
 
 # When running i detached mode (-d) we get a problem when registering the GELFUDPInput in linux.
 # Therefore we run it like these, at the cost of seeing lots of logs in the console.

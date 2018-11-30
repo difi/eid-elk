@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 import time
 import pytz
+import os
 
 # User configurable options
 input_name = 'Status and audit logs'
@@ -16,6 +17,10 @@ head = {
     'Content-Type': 'application/json'
 }
 
+def save_id(id_name, id):
+    with open(os.path.join('graylog/ids', id_name), 'w') as fid:
+        fid.write(id)
+
 ################################################################################
 # Creating input, index set and stream
 ################################################################################
@@ -25,26 +30,38 @@ full_path = urljoin(graylog_host, 'api/system/cluster/nodes')
 response = requests.get(full_path, auth=(username, password), headers=head)
 node_id = response.json()['nodes'][0]['node_id']
 
-# Great input
+# Create input
 input_def = {
     "title": input_name,
     "global": False,
-    "type": "org.graylog2.inputs.gelf.udp.GELFUDPInput",
-    "node": node_id,
+    "type": "org.graylog2.inputs.gelf.tcp.GELFTCPInput",
     "configuration": {
-        "override_source": None,
-        "recv_buffer_size": 262144,
+        "recv_buffer_size": 1048576,
+        "tcp_keepalive": True,
+        "use_null_delimiter": False,
+        "tls_client_auth_cert_file": "",
         "bind_address": "0.0.0.0",
+        "tls_cert_file": "",
+        "decompress_size_limit": 8388608,
         "port": 12201,
-        "decompress_size_limit": 8388608
-    }}
+        "tls_key_file": "",
+        "tls_enable": False,
+        "tls_key_password": "",
+        "max_message_size": 2097152,
+        "tls_client_auth": "disabled",
+        "override_source": None
+    },
+    "node": node_id
+}
 full_path = urljoin(graylog_host, 'api/system/inputs')
 response = requests.post(full_path, auth=(username, password), headers=head, data=json.dumps(input_def))
 if response.status_code >= 400:
     print(response.status_code, response.text)
     exit(-1)
 else:
-    print('Created input with ID ' + response.json()['id'])
+    input_id = response.json()['id']
+    print('Created input with ID ' + input_id)
+    save_id('input_id', input_id)
 
 # Create index set
 index_set_def = {

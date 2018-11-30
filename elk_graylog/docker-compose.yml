@@ -1,4 +1,4 @@
-version: '2'
+version: '2.4'
 
 services:
 
@@ -19,6 +19,13 @@ services:
         soft: -1
         hard: -1
 
+  mongo:
+    image: mongo:3
+    volumes:
+      - ./mongo/data:/data/db
+    networks:
+      - elk
+
   logstash:
     build:
       context: logstash/
@@ -34,7 +41,8 @@ services:
     networks:
       - elk
     depends_on:
-      - graylog
+      graylog:
+        condition: service_healthy
 
   filebeat:
     image: docker.elastic.co/beats/filebeat:5.6.13
@@ -58,19 +66,14 @@ services:
     depends_on:
       - elasticsearch
 
-  # MongoDB: https://hub.docker.com/_/mongo/
-  mongo:
-    image: mongo:3
-    volumes:
-      - ./mongo/data:/data/db
-    networks:
-      - elk
-
   graylog:
-    image: graylog/graylog:2.4
+    build:
+      context: graylog/
     volumes:
       - ./graylog/journal:/usr/share/graylog/data/journal
       - ./graylog/config:/usr/share/graylog/data/config
+      - ./graylog/ids:/usr/share/graylog/ids
+      - ./graylog/health_check:/usr/share/graylog/health_check
     environment:
       - GRAYLOG_PASSWORD_SECRET=0mP52f6MkfVNy0axZpGS3jfcSmjlDsIDa4m68Yb8rMtyCpaoAz0XMA5bBal1crVE
       # Root password: admin
@@ -93,6 +96,12 @@ services:
     depends_on:
       - elasticsearch
       - mongo
+    healthcheck:
+      test: /usr/share/graylog/health_check
+      interval: 10s
+      timeout: 2m
+      retries: 4
+      start_period: 20s
 
 networks:
   elk:

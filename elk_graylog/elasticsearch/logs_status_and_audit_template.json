@@ -174,14 +174,14 @@
         "serviceidentifier": {
           "type": "keyword"
         },
-        "soap_fault_xml": {
+        "soap_fault": {
           "type": "text",
           "analyzer": "standard"
         },
-        "soap_fault_Code": {
+        "soap_fault_parsed_Code": {
           "type": "keyword"
         },
-        "soap_fault_Reason": {
+        "soap_fault_parsed_Reason": {
           "type": "keyword"
         },
         "stack_trace": {
