@@ -5,6 +5,7 @@ from datetime import datetime
 import time
 import pytz
 import os
+import time
 
 # User configurable options
 input_name = 'Status and audit logs'
@@ -17,18 +18,28 @@ head = {
     'Content-Type': 'application/json'
 }
 
+
 def save_id(id_name, id):
     with open(os.path.join('graylog/ids', id_name), 'w') as fid:
         fid.write(id)
+
 
 ################################################################################
 # Creating input, index set and stream
 ################################################################################
 
-# Get ID of node
+# Get ID of node (try until Graylog is ready)
+print('Waiting for Graylog to start...', end='', flush=True)
 full_path = urljoin(graylog_host, 'api/system/cluster/nodes')
-response = requests.get(full_path, auth=(username, password), headers=head)
-node_id = response.json()['nodes'][0]['node_id']
+while True:
+    try:
+        response = requests.get(full_path, auth=(username, password), headers=head)
+        node_id = response.json()['nodes'][0]['node_id']
+        break
+    except requests.exceptions.ConnectionError:
+        print('.', end='', flush=True)
+        time.sleep(1)
+print()
 
 # Create input
 input_def = {
@@ -56,11 +67,11 @@ input_def = {
 full_path = urljoin(graylog_host, 'api/system/inputs')
 response = requests.post(full_path, auth=(username, password), headers=head, data=json.dumps(input_def))
 if response.status_code >= 400:
-    print(response.status_code, response.text)
+    print(response.status_code, response.text, flush=True)
     exit(-1)
 else:
     input_id = response.json()['id']
-    print('Created input with ID ' + input_id)
+    print('Created input with ID ' + input_id, flush=True)
     save_id('input_id', input_id)
 
 # Create index set
@@ -90,11 +101,11 @@ index_set_def = {
 full_path = urljoin(graylog_host, 'api/system/indices/index_sets')
 response = requests.post(full_path, auth=(username, password), headers=head, data=json.dumps(index_set_def))
 if response.status_code >= 400:
-    print(response.status_code, response.text)
+    print(response.status_code, response.text, flush=True)
     exit(-1)
 else:
     index_set_id = response.json()['id']
-    print('Created index set with ID ' + index_set_id)
+    print('Created index set with ID ' + index_set_id, flush=True)
 
 # Create stream with rule for log type
 stream_def = {
@@ -116,20 +127,20 @@ stream_def = {
 full_path = urljoin(graylog_host, 'api/streams')
 response = requests.post(full_path, auth=(username, password), headers=head, data=json.dumps(stream_def))
 if response.status_code >= 400:
-    print(response.status_code, response.text)
+    print(response.status_code, response.text, flush=True)
     exit(-1)
 else:
     stream_id = response.json()['stream_id']
-    print('Created stream with ID ' + stream_id)
+    print('Created stream with ID ' + stream_id, flush=True)
 
 # Start stream
 full_path = urljoin(graylog_host, 'api/streams/' + stream_id + '/resume')
 response = requests.post(full_path, auth=(username, password), headers=head)
 if response.status_code >= 400:
-    print(response.status_code, response.text)
+    print(response.status_code, response.text, flush=True)
     exit(-1)
 else:
-    print('Started stream with ID ' + stream_id)
+    print('Started stream with ID ' + stream_id, flush=True)
 
 ################################################################################
 # Pipeline for setting Graylog timestamp to event timestamp
@@ -150,11 +161,11 @@ end"""
 full_path = urljoin(graylog_host, 'api/plugins/org.graylog.plugins.pipelineprocessor/system/pipelines/rule')
 response = requests.post(full_path, auth=(username, password), headers=head, data=json.dumps(pipeline_rule_def))
 if response.status_code >= 400:
-    print(response.status_code, response.text)
+    print(response.status_code, response.text, flush=True)
     exit(-1)
 else:
     pipeline_rule_id = response.json()['id']
-    print('Created pipeline rule with ID ' + pipeline_rule_id)
+    print('Created pipeline rule with ID ' + pipeline_rule_id, flush=True)
 
 # Create pipeline
 pipeline_def = {
@@ -168,11 +179,11 @@ end"""
 full_path = urljoin(graylog_host, 'api/plugins/org.graylog.plugins.pipelineprocessor/system/pipelines/pipeline')
 response = requests.post(full_path, auth=(username, password), headers=head, data=json.dumps(pipeline_def))
 if response.status_code >= 400:
-    print(response.status_code, response.text)
+    print(response.status_code, response.text, flush=True)
     exit(-1)
 else:
     pipeline_id = response.json()['id']
-    print('Created pipeline rule with ID ' + pipeline_id)
+    print('Created pipeline rule with ID ' + pipeline_id, flush=True)
 
 # Define connection between pipeline and stream
 stream_connection_def = {
@@ -187,11 +198,11 @@ full_path = urljoin(
 )
 response = requests.post(full_path, auth=(username, password), headers=head, data=json.dumps(stream_connection_def))
 if response.status_code >= 400:
-    print(response.status_code, response.text)
+    print(response.status_code, response.text, flush=True)
     exit(-1)
 else:
     stream_connection_id = response.json()['id']
-    print('Created stream connection with ID ' + stream_connection_id)
+    print('Created stream connection with ID ' + stream_connection_id, flush=True)
 
 ################################################################################
 # Make sure "Pipeline Processor" is below "Message Filter Chain" in the Message Processors Configuration
@@ -226,9 +237,9 @@ if ind_pipeline < ind_message:
     response = requests.put(full_path, auth=(username, password), headers=head,
                             data=json.dumps(message_processors_configuration_def))
     if response.status_code >= 400:
-        print(response.status_code, response.text)
+        print(response.status_code, response.text, flush=True)
         exit(-1)
     else:
-        print('Updated message processors configuration')
+        print('Updated message processors configuration', flush=True)
 else:
-    print('Did not need to update message processors configuration')
+    print('Did not need to update message processors configuration', flush=True)

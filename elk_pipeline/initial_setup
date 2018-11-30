@@ -39,9 +39,14 @@ curl -s -H 'Content-Type: application/json' \
      -X PUT $ES_URL/_template/access_template \
      -d @elasticsearch/access_template.json -o /dev/null
 
-# Wait for Kibana to start
-echo Waiting for Kibana to start...
-sleep 10
+# Wait for Kibana to start (waiting until API returns code 200)
+echo -n Waiting for Kibana to start...
+until [ `curl -s -o /dev/null -w "%{http_code}" -u $ELASTIC_USERNAME:$ELASTIC_PASSWORD \
+      $KIBANA_URL/api/saved_objects/_find?type=index-pattern` == "200" ]; do
+    sleep 1
+    echo -n .
+done
+echo
 
 # Add Kibana index pattern, dashboard
 echo Adding saved objects to Kibana
@@ -50,4 +55,4 @@ curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' \
      $KIBANA_URL/api/saved_objects/_bulk_create \
      -d @kibana/saved_objects/export.json -o /dev/null
 
-# docker-compose stop elasticsearch kibana
+docker-compose stop elasticsearch kibana

@@ -1,23 +1,36 @@
 #!/bin/bash
 
+ELASTIC_USERNAME="elastic"
+ELASTIC_PASSWORD="changeme"
+ES_URL="http://$ELASTIC_USERNAME:$ELASTIC_PASSWORD@localhost:9200"
+
 mkdir -p elasticsearch/data
 mkdir -p mongo/data
 mkdir -p filebeat/data
 mkdir -p graylog/ids
 
-# When running i detached mode (-d) we get a problem when registering the GELFUDPInput in linux.
-# Therefore we run it like these, at the cost of seeing lots of logs in the console.
-docker-compose up mongo elasticsearch graylog &
+# When running i detached mode (-d) we get a problem when registering the GELFTCPInput in
+# linux. Therefore we run it like this.
+docker-compose up mongo elasticsearch graylog > /dev/null &
 
-# Wait for graylog to come up
-sleep 45
+# Wait a bit to launch the three containers
+sleep 5
 
-# Add mapping template
-curl -X PUT -u elastic:changeme "localhost:9200/_template/logs_status_and_audit_template" -H 'Content-Type: application/json' -d @elasticsearch/logs_status_and_audit_template.json
+# Wait for Elasticsearch to start
+echo -n Waiting for Elasticsearch to start...
+until curl -s $ES_URL -o /dev/null; do
+    sleep 1
+    echo -n .
+done
 echo
 
+# Add mapping template
+echo "Adding index template to Elasticsearch"
+curl -s -H 'Content-Type: application/json' -u $ELASTIC_USERNAME:$ELASTIC_PASSWORD \
+     -X PUT  "$ES_URL/_template/logs_status_and_audit_template" \
+     -d @elasticsearch/logs_status_and_audit_template.json -o /dev/null
+
+# Set up Graylog
 python graylog_setup.py
 
 docker-compose stop mongo elasticsearch graylog
-
-# Skriv om at det er nødvendig å gjøre det manuelt. Manglende API-dokumentasjon Skriv om hva pipelinen gjør og hvorfor. Også om feiling av meldinger ved sending, ...
