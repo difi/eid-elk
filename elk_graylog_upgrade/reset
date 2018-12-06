@@ -1,0 +1,1 @@
+sudo rm -rf elasticsearch/data mongo/data graylog/journal

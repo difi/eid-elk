@@ -1,0 +1,250 @@
+{
+  "template": "graylog*",
+  "order": 0,
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "dot_path_analyzer": {
+            "tokenizer": "dot_path_tokenizer"
+          }
+        },
+        "tokenizer": {
+          "dot_path_tokenizer": {
+            "type": "path_hierarchy",
+            "delimiter": ".",
+            "reverse": true
+          }
+        }
+      }
+    }
+  },
+  "mappings" : {
+    "message" : {
+      "properties": {
+        "HOSTNAME": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "altinn-receipt-id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "altinn-status-code": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "altinn-text": {
+          "type": "string",
+          "analyzer": "standard",
+          "fields": {
+            "keyword": {
+              "type": "string",
+              "index": "not_analyzed",
+              "ignore_above": 256
+            }
+          }
+        },
+        "appname": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "beat_hostname": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "beat_name": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "beat_version": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "buildinfo_lastcommit": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "buildinfo_version": {
+          "type": "string",
+          "analyzer": "dot_path_analyzer",
+          "fields": {
+            "keyword": {
+              "type": "string",
+              "index": "not_analyzed",
+              "ignore_above": 256
+            }
+          }
+        },
+        "conversation_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "direction": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "document_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "facility": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "fields_log_type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "fiks-id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "full_message": {
+          "type": "string",
+          "analyzer": "standard"
+        },
+        "gl2_remote_ip": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "gl2_remote_port": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "gl2_source_input": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "gl2_source_node": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "input_type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "journalpost_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "level": {
+          "type": "long"
+        },
+        "level_value": {
+          "type": "long"
+        },
+        "logger_name": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "loglevel": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "message": {
+          "type": "string",
+          "analyzer": "standard"
+        },
+        "message-type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "offset": {
+          "type": "long"
+        },
+        "orgnr": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "payload_size_in_KB": {
+          "type": "float"
+        },
+        "port": {
+          "type": "long"
+        },
+        "protocol": {
+          "type": "long"
+        },
+        "receipt-type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "receiver_org_number": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "response-message-code": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "response-message-text": {
+          "type": "string",
+          "analyzer": "standard",
+          "fields": {
+            "keyword": {
+              "type": "string",
+              "index": "not_analyzed",
+              "ignore_above": 256
+            }
+          }
+        },
+        "response-type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "sender_org_number": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "serviceIdentifier": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "service_identifier": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "serviceidentifier": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "soap_fault": {
+          "type": "string",
+          "analyzer": "standard"
+        },
+        "soap_fault_parsed_Code": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "soap_fault_parsed_Reason": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "stack_trace": {
+          "type": "string",
+          "analyzer": "standard",
+          "fields": {
+            "keyword": {
+              "type": "string",
+              "index": "not_analyzed",
+              "ignore_above": 256
+            }
+          }
+        },
+        "tags": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "thread_name": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "type": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Get input state
+API_ADDRESS=http://admin:admin@localhost:9000/api/system/inputstates/`cat ids/input_id`
+INPUT_STATE_JSON=`curl -fs -XGET $API_ADDRESS`
+INPUT_STATE=`echo $INPUT_STATE_JSON | jq '.state'`
+
+# Check that input state is "RUNNING"
+RUNNING=\"RUNNING\"
+if [ "$INPUT_STATE" == "$RUNNING" ]; then
+  exit 0
+else
+  exit 1
+fi
