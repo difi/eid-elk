@@ -1,0 +1,7 @@
+#!/bin/bash
+
+API_KEY="a71b93ae-328d-4161-807f-d9a1b57e32bf"
+PAGE_ID="3q3k4n36v9my"
+
+METRIC_ID_APP_NUM_ERRORS="f8vx0xnwxhdn"
+METRIC_ID_ACC_AVG_RESPONSE_TIME="vr7nq3hr2crh"

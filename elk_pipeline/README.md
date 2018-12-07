@@ -46,8 +46,14 @@ python create_large_logs.py
 
 Kjør dette i konsolen for å sette ønsket versjon av Elastic-stacken:
 ```bash
-export ELK_VERSION=6.5.1
+export ELK_VERSION=6.5.2
 ```
+
+### Klargjøre sending og mottak av metrikker for statuspage.io (ikke nødvendig)
+
+Det er støtte for å vise to eksempelmetrikker på et dashboard på statuspage.io. Disse metrikkene er antall meldinger med nivå "ERROR" i applikasjonsloggene og gjennomsnittlig responstid i tilgangsloggene. Watcher-definisjonene ligger i mappen `watchers/`, og er konfigurert til å sende aggregerte data for den siste måneden hvert 30. sekund (mer fornuftige valg er anbefalt ved eventuell produksjonssetting).
+
+Dersom det ønskes å vise eksempelmetrikkene på et dashboard på statuspage.io, opprett en side og legg til to nye systemmetrikker. Hent ut API-nøkkelen din, side-IDen og de to metrikk-IDene, og putt disse inn i filen `watchers/statuspage.io_keys`.
 
 ### Førstegangsinitialisering
 
@@ -55,6 +61,12 @@ Eksempelet kjøres ved å først kjøre (kun første gang)
 ```bash
 $ docker-compose build
 $ ./initial_setup
+```
+
+Ved visning av eksempelmetrikker på statuspage.io, kjør istedenfor
+```bash
+$ docker-compose build
+$ ./initial_setup watchers
 ```
 
 ### Kjøre eksempelet

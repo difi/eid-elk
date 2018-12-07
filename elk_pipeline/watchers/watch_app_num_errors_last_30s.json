@@ -1,0 +1,63 @@
+{
+  "trigger": {
+    "schedule": {
+      "cron": "0/30 0/1 * * * ?"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "indices": [
+          "logs_application*"
+        ],
+        "body": {
+          "_source": false,
+          "query": {
+            "bool": {
+              "filter": [
+                {
+                  "match": {
+                    "level": "ERROR"
+                  }
+                },
+                {
+                  "range": {
+                    "@timestamp": {
+                      "from": "{{ctx.trigger.scheduled_time}}||-1M",
+                      "to": "{{ctx.trigger.scheduled_time}}"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "always": {}
+  },
+  "actions": {
+    "statuspage_webhook": {
+      "transform": {
+        "script": "return [ 'timestamp': ctx.trigger.scheduled_time.getMillis()/1000.0, 'value' : ctx.payload.hits.total ]"
+      },
+      "webhook": {
+        "scheme": "https",
+        "method": "POST",
+        "host": "api.statuspage.io",
+        "port": 443,
+        "path": "/v1/pages/${PAGE_ID}/metrics/${METRIC_ID}/data.json",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization": "OAuth ${API_KEY}"
+        },
+        "params": {
+          "data[timestamp]": "{{ctx.payload.timestamp}}",
+          "data[value]": "{{ctx.payload.value}}"
+        }
+      }
+    }
+  }
+}

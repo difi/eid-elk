@@ -20,27 +20,56 @@ done
 echo
 
 # X-pack
-echo Activating X-Pack trail
+echo "Activating X-Pack trail"
 curl -s -H 'Content-Type:application/json' \
      -X POST $ES_URL/_xpack/license/start_trial?acknowledge=true \
      -o /dev/null
-echo Setting password for Logstash
+echo "Setting password for Logstash"
 curl -s -H 'Content-Type:application/json' \
      -X PUT $ES_URL/_xpack/security/user/logstash_system/_password \
      -d "{\"password\": \"${ELASTIC_PASSWORD}\"}" -o /dev/null
 
 # Add mapping templates
-echo Adding application logs index template to Elasticsearch
+echo "Adding application logs index template to Elasticsearch"
 curl -s -H 'Content-Type: application/json' \
      -X PUT $ES_URL/_template/application_template \
      -d @elasticsearch/application_template.json -o /dev/null
-echo Adding access logs index template to Elasticsearch
+echo "Adding access logs index template to Elasticsearch"
 curl -s -H 'Content-Type: application/json' \
      -X PUT $ES_URL/_template/access_template \
      -d @elasticsearch/access_template.json -o /dev/null
 
+# Add Watchers if requested. Uses envsubst to replace the API key, page ID and
+# metric ID in the json files defining the watchers in the watchers/ directory.
+if [ $# -eq 1 ]; then
+  if [ $1 == "watchers" ]; then
+    source watchers/statuspage.io_keys
+
+    echo "Adding watch for number of errors in application logs"
+    eval API_KEY=$API_KEY \
+      PAGE_ID=$PAGE_ID \
+      METRIC_ID=$METRIC_ID_APP_NUM_ERRORS \
+      envsubst < watchers/watch_app_num_errors_last_30s.json > watchers/watch.json
+    curl -s -H 'Content-Type: application/json' \
+         -X PUT $ES_URL/_xpack/watcher/watch/app_num_errors \
+         -d @watchers/watch.json -o /dev/null
+
+    echo "Adding watch for average response time from access logs"
+    eval API_KEY=$API_KEY \
+      PAGE_ID=$PAGE_ID \
+      METRIC_ID=$METRIC_ID_ACC_AVG_RESPONSE_TIME \
+      envsubst < watchers/watch_acc_avg_response_time_last_30s.json > watchers/watch.json
+    curl -s -H 'Content-Type: application/json' \
+         -X PUT $ES_URL/_xpack/watcher/watch/acc_response_time \
+         -d @watchers/watch.json -o /dev/null
+
+    # Delete temporary file
+    rm watchers/watch.json
+  fi
+fi
+
 # Wait for Kibana to start (waiting until API returns code 200)
-echo -n Waiting for Kibana to start...
+echo -n "Waiting for Kibana to start..."
 until [ `curl -s -o /dev/null -w "%{http_code}" -u $ELASTIC_USERNAME:$ELASTIC_PASSWORD \
       $KIBANA_URL/api/saved_objects/_find?type=index-pattern` == "200" ]; do
     sleep 1
@@ -49,7 +78,7 @@ done
 echo
 
 # Add Kibana index pattern, dashboard
-echo Adding saved objects to Kibana
+echo "Adding saved objects to Kibana"
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' \
      -X POST -u $ELASTIC_USERNAME:$ELASTIC_PASSWORD \
      $KIBANA_URL/api/saved_objects/_bulk_create \
